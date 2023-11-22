@@ -570,6 +570,14 @@ table.seasons {
   overflow: auto;
 }
 
+.link-row.regex {
+      display: flex;
+
+  gap: 10px;
+  >div {
+        display: flex;
+      }
+    }
 
 #settings {
   h1 {
@@ -681,6 +689,22 @@ input.save:hover {
         width: 5em;
         max-width: 5em;
         max-height: 5em;
+      }
+    }
+
+    .link-row label.centered {
+      text-align: left;
+    }
+    .link-row.regex {
+      flex-direction: column;
+      justify-content: stretch;
+      >div {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+      }
+      input {
+        flex-grow: 1;
       }
     }
     

@@ -523,6 +523,14 @@ table.seasons tr:nth-child(even) td {
   overflow: auto;
 }
 
+.link-row.regex {
+  display: flex;
+  gap: 10px;
+}
+.link-row.regex > div {
+  display: flex;
+}
+
 #settings {
   max-height: 95vh;
 }
@@ -621,6 +629,21 @@ input.save:hover {
     width: 5em;
     max-width: 5em;
     max-height: 5em;
+  }
+  #wrapper .link-row label.centered {
+    text-align: left;
+  }
+  #wrapper .link-row.regex {
+    flex-direction: column;
+    justify-content: stretch;
+  }
+  #wrapper .link-row.regex > div {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  #wrapper .link-row.regex input {
+    flex-grow: 1;
   }
   #wrapper #settings {
     max-width: 88vw;

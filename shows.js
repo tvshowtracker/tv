@@ -550,28 +550,31 @@ function addLink(e, link = false) {
     let linkRow3 = document.createElement("div");
     linkRow3.classList.add("link-row");
     linkRow3.classList.add("regex");
+    let linkRow3a= document.createElement("div");
+    let linkRow3b= document.createElement("div");
     let linkSearchLabel = document.createElement("label");
     linkSearchLabel.innerHTML = "Replace";
-    linkRow3.appendChild(linkSearchLabel);
+    linkRow3a.appendChild(linkSearchLabel);
     let linkSearch = document.createElement("input");
     linkSearch.classList.add("linkSearch");
 
     if (link) {
         linkSearch.value = link.search;
     }
-    linkRow3.appendChild(linkSearch);
+    linkRow3a.appendChild(linkSearch);
     let linkReplaceLabel = document.createElement("label");
     linkReplaceLabel.innerHTML = "With";
     linkReplaceLabel.classList.add("centered");
-    linkRow3.appendChild(linkReplaceLabel);
+    linkRow3b.appendChild(linkReplaceLabel);
     let linkReplace = document.createElement("input");
     linkReplace.classList.add("linkReplace");
 
     if (link) {
         linkReplace.value = link.replace;
     }
-    linkRow3.appendChild(linkReplace);
-
+    linkRow3b.appendChild(linkReplace);
+    linkRow3.appendChild(linkRow3a);
+    linkRow3.appendChild(linkRow3b);
 
     let div = document.createElement("div");
     div.classList.add("row");
