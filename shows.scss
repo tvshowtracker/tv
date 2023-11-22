@@ -140,6 +140,7 @@ table a.remove, table a.edit {
       flex-grow: 1;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
     > div:nth-child(3) {
@@ -689,6 +690,15 @@ input.save:hover {
         width: 5em;
         max-width: 5em;
         min-width: 5em;
+      }
+    }
+
+    .showlist-item .links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      span {
+        display: none;
       }
     }
 

@@ -968,7 +968,9 @@ function buildTable(showsLS, table) {
                             a.href = url;
 
                             if (pos > 0) {
-                                t2_1.append(" · ");
+                                let separator=document.createElement("span")
+                                separator.innerHTML=" · ";
+                                t2_1.appendChild(separator);
                             }
                             pos++;
                             t2_1.appendChild(a);
@@ -1123,6 +1125,12 @@ function buildTable(showsLS, table) {
 }
 
 function getLinks() {
+    if (document.getElementById("wrapper").classList.contains("linksShown")) {
+        document.getElementById("wrapper").classList.remove("linksShown");
+        hideLinks();
+        return;
+    }
+    document.getElementById("wrapper").classList.add("linksShown");
     let showsLS = getShowsObject();
     if (showsLS.settings.settingsCheckLocation) {
         let resultsDiv = document.getElementById("countryCheck");
