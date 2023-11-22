@@ -24,6 +24,7 @@ body {
 #wrapper {
   max-height: calc(100vh - 62px);
   overflow: auto;
+  box-sizing: border-box;
 }
 
 table a {
@@ -676,13 +677,16 @@ input.save:hover {
   #show-details .details {
     flex-direction: column;
   }
+  body {
+    margin:0;
+  }
   #wrapper {
     max-width: 100%;
     min-width: 100%;
     max-height: unset;
-
+    border-radius: 0;
     border: none;
-    padding: 0 0 2em 0;
+    padding: 5px 5px 2em 5px;
     //padding-bottom:50px;
 
     #scheduled, #waiting, #ended {
