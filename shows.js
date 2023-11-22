@@ -14,6 +14,10 @@ function initStore() {
     } else {
         //console.log("Local storage is ", getShowsObject());
     }
+    showsLS=getShowsObject();
+    if (Object.keys(showsLS.shows).length === 0) {
+        document.getElementById("firstTime").classList.remove("hidden");
+    }
 }
 
 function commitToLS(showsLS) {
@@ -744,6 +748,7 @@ function addShowToStorage(show, isUpdate = false, callback) {
                 //     document.getElementById("addEdit-wrapper").classList.add("hidden");
                 document.getElementById("addEditName").value = "";
                 document.getElementById("addEditName").focus();
+                document.getElementById("firstTime").classList.add("hidden");
                 //     console.log('d');
                 if (typeof callback === "function") {
                     callback();
@@ -751,7 +756,7 @@ function addShowToStorage(show, isUpdate = false, callback) {
                     refreshDisplay(showsLS);
                 }
             })
-            .catch(function () {
+            .catch(function (e) {
                 // This is where you run code if the server returns any errors
                  console.error("Something went wrong", e);
             });
@@ -930,7 +935,7 @@ function buildTable(showsLS, table) {
                         t1.innerHTML = "<a class='demote' data-show='" + id + "'><span class='material-icons demote' data-show='" + id + "'>arrow_downward</span></a>";
                     }
 
-                    if (new Date(show.nextEpisode.airstamp) <= today) {
+                    if (show.nextEpisode && new Date(show.nextEpisode.airstamp) <= today) {
                         div.classList.add("current");
                     }
 
@@ -1069,12 +1074,12 @@ function buildTable(showsLS, table) {
 
                         nextEp += " : " + getDate(show.nextEpisode.airstamp);
                         //console.log("CHECK:",show.show.name,new Date(show.nextEpisode.airstamp), today, nextWeek);
-                        if (new Date(show.nextEpisode.airstamp) <= today) {
+                        if (show.nextEpisode && new Date(show.nextEpisode.airstamp) <= today) {
                             t1.innerHTML="<a class='promote' data-show='" + id + "'><span class='material-icons currentLive promote' data-show='" + id + "'>live_tv</span></a>";
 
                             div.classList.add("current");
                         }
-                        else if (new Date(show.nextEpisode.airstamp) <= nextWeek) {
+                        else if (show.nextEpisode && new Date(show.nextEpisode.airstamp) <= nextWeek) {
                             div.classList.add("imminent");
                         }
                         t2a.innerHTML += "<span class='meta'>" + nextEp + "</span>";

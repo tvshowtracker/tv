@@ -1,6 +1,13 @@
 
-.hidden {
-  display: none !important;
+#firstTime {
+  margin-top: 20px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  p:last-child {
+    margin-bottom:0;
+  }
 }
 
 html,body {
@@ -806,11 +813,13 @@ input.save:hover {
     width: 10em;
     display: inline-block;
   }
-
-
 }
 
-.link-row label {
+#settings .row label {
+  width: 11em;
+}
+
+#settings .link-row label {
   width: 3.5em;
 
   &.centered {
@@ -889,6 +898,12 @@ input.save:hover {
 
 html.darkmode {
   background: #000;
+
+  #firstTime {
+
+    border: 1px solid #ccc;
+
+  }
 
   .showlist-item.imminent {
     background: #116100 !important;
