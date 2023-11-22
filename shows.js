@@ -1,7 +1,14 @@
 function initStore() {
     // If not, create it
     if (typeof window.localStorage.tvShowsDataStore === "undefined") {
+
+
         window.showsLS = {"settings": {}, "shows": {}};
+        if (window.matchMedia) {
+            let match = window.matchMedia('(prefers-color-scheme: dark)');
+            console.log("CHECK : ",match);
+            window.showsLS.settings.darkmode = true;
+        }
         window.localStorage.setItem("tvShowsDataStore", JSON.stringify(window.showsLS));
     } else {
         //console.log("Local storage is ", getShowsObject());
@@ -894,6 +901,10 @@ function buildTable(showsLS, table) {
         }
     });
 
+    let today = new Date();
+    let nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+
+
     for (let id of ordered) {
 
         let show = showsLS.shows[id];
@@ -912,9 +923,13 @@ function buildTable(showsLS, table) {
                     let div = document.createElement("div");
 
                     if (show.nextEpisode && new Date(show.nextEpisode.airstamp.substring(0, 4), show.nextEpisode.airstamp.substring(5, 7) - 2, parseInt(show.nextEpisode.airstamp.substring(8, 10))) <= new Date()) {
-                        t1.innerHTML = "<span class='material-icons currentLive'>live_tv</span>";
+                        t1.innerHTML = "<a class='demote' data-show='" + id + "'><span class='material-icons currentLive demote' data-show='" + id + "'>live_tv</span></a>";
                     } else {
                         t1.innerHTML = "<a class='demote' data-show='" + id + "'><span class='material-icons demote' data-show='" + id + "'>arrow_downward</span></a>";
+                    }
+
+                    if (new Date(show.nextEpisode.airstamp) <= today) {
+                        div.classList.add("current");
                     }
 
                     let t2 = document.createElement("div");
@@ -1051,6 +1066,15 @@ function buildTable(showsLS, table) {
 
 
                         nextEp += " : " + getDate(show.nextEpisode.airstamp);
+                        //console.log("CHECK:",show.show.name,new Date(show.nextEpisode.airstamp), today, nextWeek);
+                        if (new Date(show.nextEpisode.airstamp) <= today) {
+                            t1.innerHTML="<a class='promote' data-show='" + id + "'><span class='material-icons currentLive promote' data-show='" + id + "'>live_tv</span></a>";
+
+                            div.classList.add("current");
+                        }
+                        else if (new Date(show.nextEpisode.airstamp) <= nextWeek) {
+                            div.classList.add("imminent");
+                        }
                         t2a.innerHTML += "<span class='meta'>" + nextEp + "</span>";
                     }
                     t2.appendChild(t2a);
@@ -1077,13 +1101,16 @@ function buildTable(showsLS, table) {
                     t4a.classList.add("releaseNotes");
                     t4a.href = getLinkHref("settingsReleaseNotesLink", show, showsLS);
 
+
                     if (show.renewalNote) {
                         t4a.innerHTML += show.renewalNote;
                         t4a.classList.add("hasRenewalNote");
                     } else {
                         if (typeof show.hasNewSeason !== "undefined" && show.hasNewSeason) {
                             //t4a.innerHTML += "<em>Renewed</em>";
-                            div.classList.add("renewed");
+                            if (!scheduled) {
+                                div.classList.add("renewed");
+                            }
                         }
 
                         t4.classList.add("noRenewalNote");
@@ -1096,7 +1123,7 @@ function buildTable(showsLS, table) {
                     rn.classList.add("editRenewal");
                     rn.dataset.show = id;
                     rn.dataset.renewalNote = show.renewalNote;
-                    if (rn.dataset.renewalNote.match(/renewed/i)) {
+                    if (!scheduled && rn.dataset.renewalNote.match(/renewed/i)) {
                         div.classList.add("renewed");
                     }
                     rn.innerHTML = "<span class='material-icons editRenewal' data-show='" + id + "' >edit</span>";

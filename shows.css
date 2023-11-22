@@ -259,6 +259,14 @@ td.renewal span {
   margin-top: -2px;
 }
 
+.showlist-item.imminent {
+  background: #bdfabf !important;
+}
+
+.showlist-item.current {
+  background: #93fb95 !important;
+}
+
 .showlist-item:hover .noRenewalNote .releaseNotes {
   opacity: 1;
 }
@@ -792,6 +800,15 @@ input.save:hover {
 
 html.darkmode {
   background: #000;
+}
+html.darkmode .showlist-item.imminent {
+  background: #116100 !important;
+}
+html.darkmode .showlist-item.current {
+  background: #104711 !important;
+}
+html.darkmode .showList > div:hover {
+  background: #232311 !important;
 }
 html.darkmode .github-logo {
   content: url("https://raw.githubusercontent.com/tvshowtracker/tv/master/github-mark-dark.png");
