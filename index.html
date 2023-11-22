@@ -69,6 +69,8 @@
             <a id='github' title="Visit TV Show Tracker Github Repository" href='https://github.com/tvshowtracker/tv' target='_blank'><img src='github-mark.png'></a>
             <h1>Settings</h1>
             <div class="inner">
+                <div class="importExportButtons"><input id="export" type="button" value="Export Shows"> <input
+                        id="import" type="button" value="Import Shows"></div>
                 <div class="row"><label for="settingsShowEmojis">Show Emojis</label><input checked class="setting"
                                                                                            id="settingsShowEmojis"
                                                                                            type="checkbox"></div>
@@ -133,10 +135,11 @@
                     Link</a><br><em><strong>%SEARCH%</strong> will be replaced with the search text.</em></div>
 
                 <div class="links"></div>
+
+
             </div>
             <div class="row buttons settings-buttons">
-                <div class="importExportButtons"><input id="export" type="button" value="Export Shows"> <input
-                        id="import" type="button" value="Import Shows"></div>
+
                 <div><input class="save" id="saveSettings" type="button" value="Save"> <input class="cancelModal"
                                                                                               type="button"
                                                                                               value="Cancel"></div>

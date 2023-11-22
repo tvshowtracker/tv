@@ -266,7 +266,10 @@ td.renewal span {
 }
 
 .importExportButtons {
-  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 #show-details .img img {
@@ -610,8 +613,22 @@ input.save:hover {
   #wrapper {
     max-width: 100%;
     min-width: 100%;
+    max-height: unset;
     border: none;
-    padding: 0;
+    padding: 0 0 2em 0;
+  }
+  #wrapper #scheduled .showList > div > div:nth-child(4), #wrapper #waiting .showList > div > div:nth-child(4), #wrapper #ended .showList > div > div:nth-child(4) {
+    width: 5em;
+    max-width: 5em;
+    max-height: 5em;
+  }
+  #wrapper #settings {
+    max-width: 88vw;
+  }
+  #wrapper .settings-buttons {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
   }
 
   /*
