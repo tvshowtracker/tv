@@ -176,6 +176,8 @@ table a.remove, table a.edit {
     min-width: 10em;
     max-width: 10em;
     padding-right: 5px;
+    display: flex;
+    align-items: center;
   }
 
   .showList > div > div:nth-child(3) {
@@ -700,6 +702,18 @@ input.save:hover {
         max-width: 5em;
         min-width: 5em;
       }
+    }
+
+    .showlist-item .noRenewalNote  {
+      display: flex;
+  flex-wrap: wrap;
+    }
+    .showlist-item .noRenewalNote .releaseNotes {
+      opacity: 1;
+    }
+    .showlist-item .editRenewal {
+      opacity: 1;
+      position: relative;
     }
 
     .showlist-item .links {

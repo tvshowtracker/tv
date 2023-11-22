@@ -1024,7 +1024,7 @@ function buildTable(showsLS, table) {
                     t2a.innerHTML = show.show.name;
 
                     if (!scheduled && typeof show.nextSeason !== "undefined" && show.nextSeason) {
-                        t2a.innerHTML += " (Season " + show.nextSeason + ")";
+                        t2a.innerHTML += " (Season&nbsp;" + show.nextSeason + ")";
                     }
 
                     t2a.classList.add("showName");
@@ -1196,6 +1196,9 @@ function getDate(dateText) {
         let showsLS = getShowsObject();
 
         let d = new Date(dateText);
+        if (typeof showsLS.settings.settingsDateFormat === "undefined") {
+            showsLS.settings.settingsDateFormat = "m/d/Y";
+        }
         return showsLS.settings.settingsDateFormat
             .replace('Y', d.getFullYear())
             .replace('m', d.getMonth() + 1)
