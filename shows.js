@@ -330,24 +330,24 @@ function refreshPendingShows(table = "waiting") {
 }
 
 function refreshNextPendingShow(table = "waiting") {
+
     let next = document.querySelector("#" + table + " span.reloadPending");
     if (next) {
         next.classList.remove("reloadPending");
         next.closest("div").querySelector(".hourglass").remove();
 
         reload(next, function () {
-            let left = document.querySelectorAll("#waiting span.reloadPending").length;
+            let left = document.querySelectorAll("#" + table + " span.reloadPending").length;
 
             if (left === 0) {
                 let showsLS = getShowsObject();
                 refreshDisplay(showsLS);
             } else {
-
                 next.closest("div.showlist-item").classList.remove("loading-wrapper");
                 next.closest("div").querySelector(".reloadloader").remove();
                 next.classList.remove("hidden");
                 setTimeout(function () {
-                    refreshNextPendingShow();
+                    refreshNextPendingShow(table);
                 }, 500);
             }
         });
