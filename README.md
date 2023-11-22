@@ -61,10 +61,10 @@ Within settings you can:
 
 You may use any of the following characters to configure your date:
 
-* Y = 4 digit year
-* M = 2 digit month
+* Y = 4-digit year
+* M = 2-digit month
 * m = Month
-* D = 2 digit day
+* D = 2-digit day
 * d = Day
 
 #### Country Check

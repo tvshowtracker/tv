@@ -5,18 +5,21 @@
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 20px;
+
   p:last-child {
-    margin-bottom:0;
+    margin-bottom: 0;
   }
 }
 
-html,body {
+html, body {
   height: 100%;
-  margin:0;
+  margin: 0;
 }
-.showlist-item.clicked  {
- background: rgba(255, 255, 0, 0.5) !important;
+
+.showlist-item.clicked {
+  background: rgba(255, 255, 0, 0.5) !important;
 }
+
 .showList > div:hover {
   background: rgba(255, 255, 0, 0.18) !important;
 }
@@ -62,11 +65,6 @@ table a {
   z-index: -1000;
 }
 
-.searchDD1 {
-  display: inline-flex;
-  height: 32px;
-  align-items: center;
-}
 
 td.renewal .searchDD > span {
   margin-right: 0;
@@ -84,9 +82,6 @@ td.renewal .searchDD > span {
   border-radius: 5px;
 }
 
-table a.remove, table a.edit {
-  font-size: 0.8em;
-}
 
 .past {
   color: darkgreen;
@@ -289,6 +284,7 @@ td.renewal span {
 .showlist-item.imminent {
   background: #bdfabf !important;
 }
+
 .showlist-item.current {
   background: #93fb95 !important;
 }
@@ -433,11 +429,6 @@ div.good {
 
 .clear {
   clear: both;
-}
-
-#waiting td:first-child span:hover, #waiting td.renewal span:hover, .searchDD:hover {
-  cursor: pointer;
-  color: blue;
 }
 
 .ended {
@@ -601,13 +592,14 @@ table.seasons {
 }
 
 .link-row.regex {
-      display: flex;
+  display: flex;
 
   gap: 10px;
-  >div {
-        display: flex;
-      }
-    }
+
+  > div {
+    display: flex;
+  }
+}
 
 #settings {
   h1 {
@@ -679,6 +671,7 @@ input.save:hover {
   max-width: 25px;
   position: absolute;
   right: 15px;
+
   img {
     width: 25px;
   }
@@ -701,7 +694,7 @@ input.save:hover {
 }
 
 .github-logo {
-  content:url("https://raw.githubusercontent.com/tvshowtracker/tv/master/github-mark.png");
+  content: url("https://raw.githubusercontent.com/tvshowtracker/tv/master/github-mark.png");
 }
 
 
@@ -712,7 +705,7 @@ input.save:hover {
 
 
   body {
-    margin:0;
+    margin: 0;
   }
   #wrapper {
     max-width: 100%;
@@ -732,13 +725,15 @@ input.save:hover {
       }
     }
 
-    .showlist-item .noRenewalNote  {
+    .showlist-item .noRenewalNote {
       display: flex;
-  flex-wrap: wrap;
+      flex-wrap: wrap;
     }
+
     .showlist-item .noRenewalNote .releaseNotes {
       opacity: 1;
     }
+
     .showlist-item .editRenewal {
       opacity: 1;
       position: relative;
@@ -748,6 +743,7 @@ input.save:hover {
       display: flex;
       flex-direction: column;
       gap: 8px;
+
       span {
         display: none;
       }
@@ -756,19 +752,22 @@ input.save:hover {
     .link-row label.centered {
       text-align: left;
     }
+
     .link-row.regex {
       flex-direction: column;
       justify-content: stretch;
-      >div {
+
+      > div {
         display: flex;
         justify-content: flex-start;
         width: 100%;
       }
+
       input {
         flex-grow: 1;
       }
     }
-    
+
     #settings {
       max-width: 88vw;
     }
@@ -908,6 +907,7 @@ html.darkmode {
   .showlist-item.imminent {
     background: #116100 !important;
   }
+
   .showlist-item.current {
     background: #104711 !important;
   }
@@ -917,8 +917,9 @@ html.darkmode {
   }
 
   .github-logo {
-    content:url("https://raw.githubusercontent.com/tvshowtracker/tv/master/github-mark-dark.png");
+    content: url("https://raw.githubusercontent.com/tvshowtracker/tv/master/github-mark-dark.png");
   }
+
   input[type=button] {
     box-shadow: 0 1px 0 0 #999999;
   }

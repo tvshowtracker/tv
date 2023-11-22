@@ -61,12 +61,6 @@ table a {
   z-index: -1000;
 }
 
-.searchDD1 {
-  display: inline-flex;
-  height: 32px;
-  align-items: center;
-}
-
 td.renewal .searchDD > span {
   margin-right: 0;
 }
@@ -80,10 +74,6 @@ td.renewal .searchDD > span {
   max-height: 2em;
   vertical-align: middle;
   border-radius: 5px;
-}
-
-table a.remove, table a.edit {
-  font-size: 0.8em;
 }
 
 .past {
@@ -398,11 +388,6 @@ div.good {
 
 .clear {
   clear: both;
-}
-
-#waiting td:first-child span:hover, #waiting td.renewal span:hover, .searchDD:hover {
-  cursor: pointer;
-  color: blue;
 }
 
 .ended {
