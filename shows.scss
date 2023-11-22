@@ -918,7 +918,7 @@ html.darkmode {
       color: #ccc;
     }
 
-    a, .showlist-item a.releaseNotes .material-icons {
+    a, .showlist-item a.releaseNotes .material-icons, .showlist-item .showName:hover {
       color: #96abfe !important;
     }
 

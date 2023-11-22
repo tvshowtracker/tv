@@ -831,7 +831,7 @@ html.darkmode #wrapper .links .row {
 html.darkmode #wrapper .toggleDarkMode {
   color: #ccc;
 }
-html.darkmode #wrapper a, html.darkmode #wrapper .showlist-item a.releaseNotes .material-icons {
+html.darkmode #wrapper a, html.darkmode #wrapper .showlist-item a.releaseNotes .material-icons, html.darkmode #wrapper .showlist-item .showName:hover {
   color: #96abfe !important;
 }
 html.darkmode #wrapper div.renewed a.showName, html.darkmode #wrapper div.renewed a.releaseNotes {
