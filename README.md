@@ -94,6 +94,7 @@ Things that could do with some updating
 * Better responsiveness for mobile
 * Better alerts
 * Better design overall
+* Add auto refresh option
 
 
 
