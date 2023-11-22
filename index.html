@@ -15,146 +15,155 @@
 
 <body class="unchecked">
 <div id="wrapper">
+    <div id="wrapper-inner">
 
-    <h1>Current <a href='javascript:getLinks();'>Links</a> <a href='javascript:addShow("currentShows");'>Add</a>
-    </h1>
-    <div class="hidden" id="countryCheck"></div>
-    <div class='hidden' id='connectionStatus'></div>
-    <div class='clear'></div>
-    <div class="wrapper" id="current"><span class="loader"></span></div>
-    <h1>Scheduled <a href='javascript:refreshScheduledShows();'>Refresh All</a> <a
-            href='javascript:addShow("pendingShows");'>Add</a></h1>
-    <div class="wrapper" id="scheduled"><span class="loader"></span></div>
-    <h1>Waiting/Hoping for Next Season <a href='javascript:refreshPendingShows();'>Refresh All</a> <a
-            href='javascript:addShow("pendingShows");'>Add</a></h1>
-    <div class="wrapper" id="waiting"><span class="loader"></span></div>
+        <h1>Current <a href='javascript:getLinks();'>Links</a> <a href='javascript:addShow("currentShows");'>Add</a>
+        </h1>
+        <div class="hidden" id="countryCheck"></div>
+        <div class='hidden' id='connectionStatus'></div>
+        <div class='clear'></div>
+        <div class="wrapper" id="current"><span class="loader"></span></div>
+        <h1>Scheduled <a href='javascript:refreshScheduledShows();'>Refresh All</a> <a
+                href='javascript:addShow("pendingShows");'>Add</a></h1>
+        <div class="wrapper" id="scheduled"><span class="loader"></span></div>
+        <h1>Waiting/Hoping for Next Season <a href='javascript:refreshPendingShows();'>Refresh All</a> <a
+                href='javascript:addShow("pendingShows");'>Add</a></h1>
+        <div class="wrapper" id="waiting"><span class="loader"></span></div>
 
-    <h1>Ended</h1>
-    <div class="wrapper" id="ended"><span class="loader"></span></div>
+        <h1>Ended</h1>
+        <div class="wrapper" id="ended"><span class="loader"></span></div>
 
-    <div class="hidden modal  cancelModal" id="addEdit-wrapper">
-        <div data-addTo="" data-mode="" data-show="" id="addEdit">
-            <h1><span>Add</span> Show</h1>
-            <div class="row"><label for="addEditName">Name:</label><input id="addEditName"></div>
-            <div id="results-wrapper">
-                <div id="results"></div>
+        <div class="hidden modal  cancelModal" id="addEdit-wrapper">
+            <div data-addTo="" data-mode="" data-show="" id="addEdit">
+                <h1><span>Add</span> Show</h1>
+                <div class="row"><label for="addEditName">Name:</label><input id="addEditName"></div>
+                <div id="results-wrapper">
+                    <div id="results"></div>
+                </div>
+                <div class="row buttons"><input class="save" id="searchShow" type="button" value="Search"> <input
+                        class="cancelModal" type="button" value="Cancel"></div>
             </div>
-            <div class="row buttons"><input class="save" id="searchShow" type="button" value="Search"> <input
-                    class="cancelModal" type="button" value="Cancel"></div>
         </div>
-    </div>
-    <div class="hidden modal cancelModal" id="edit-renewal-wrapper">
-        <div data-addTo="" data-mode="" data-show="" id="addEditRenewal">
-            <h1>Edit Renewal Note</h1>
-            <div class="showSubheader"><em><span class='show'></span></em></div>
-            <div class="row"><label for="renewalNote">Renewal Note:</label><input id="renewalNote" value=""></div>
-            <div id="renewal-results-wrapper">
-                <div id="renewal-results"></div>
+        <div class="hidden modal cancelModal" id="edit-renewal-wrapper">
+            <div data-addTo="" data-mode="" data-show="" id="addEditRenewal">
+                <h1>Edit Renewal Note</h1>
+                <div class="showSubheader"><em><span class='show'></span></em></div>
+                <div class="row"><label for="renewalNote">Renewal Note:</label><input id="renewalNote" value=""></div>
+                <div id="renewal-results-wrapper">
+                    <div id="renewal-results"></div>
+                </div>
+                <div class="row buttons"><input class="save" id="saveRenewalNote" type="button" value="Save"> <input
+                        class="cancelModal" type="button" value="Cancel"></div>
             </div>
-            <div class="row buttons"><input class="save" id="saveRenewalNote" type="button" value="Save"> <input
-                    class="cancelModal" type="button" value="Cancel"></div>
         </div>
-    </div>
 
 
-    <div class="hidden modal cancelModal" id="show-details-wrapper">
-        <div id="show-details">
-            <h1></h1>
-            <div class="details"></div>
-            <div class="row buttons"><input class="cancelModal" type="button" value="Close"></div>
+        <div class="hidden modal cancelModal" id="show-details-wrapper">
+            <div id="show-details">
+                <h1></h1>
+                <div class="details"></div>
+                <div class="row buttons"><input class="cancelModal" type="button" value="Close"></div>
+            </div>
         </div>
-    </div>
-    <div class="hidden modal cancelModal" id="settings-wrapper">
-        <div id="settings">
-            <a id='github' title="Visit TV Show Tracker Github Repository" href='https://github.com/tvshowtracker/tv' target='_blank'><img class="github-logo"></a>
-            <h1>Settings</h1>
-            <div class="inner">
-                <div class="importExportButtons"><input id="export" type="button" value="Export Shows"> <input
-                        id="import" type="button" value="Import Shows"></div>
-                <div class="row"><label for="settingsShowEmojis">Show Emojis</label><input checked class="setting"
-                                                                                           id="settingsShowEmojis"
-                                                                                           type="checkbox"></div>
-                <div class="row"><label for="settingsDateFormat">Date Format</label><input class="setting" id="settingsDateFormat"
-                                                                                           type="text"
-                                                                                           value="m/d/Y"></div>
-                <div class="row sub"><em>Y, M, m, D, and d can be used for the date format.</em></div>
-                <div class="row"><label for="settingsShowNameLink">Show Name points to</label><select
-                        class="setting" id="settingsShowNameLink">
-                    <option selected value='internal'>Show Info</option>
-                    <option value='tvMaze'>TV Maze</option>
-                    <option value='imdb'>IMDB</option>
-                    <option value='thetvdb'>thetvdb</option>
-                    <option value='duckduckgo'>Search duckduckgo</option>
-                    <option value='bing'>Search bing</option>
-                    <option value='google'>Search google</option>
-                    <option value='custom'>Custom</option>
+        <div class="hidden modal cancelModal" id="settings-wrapper">
+            <div id="settings">
+                <a id='github' title="Visit TV Show Tracker Github Repository"
+                   href='https://github.com/tvshowtracker/tv' target='_blank'><img class="github-logo"></a>
+                <h1>Settings</h1>
+                <div class="inner">
+                    <div class="importExportButtons"><input id="export" type="button" value="Export Shows"> <input
+                            id="import" type="button" value="Import Shows"></div>
+                    <div class="row"><label for="settingsShowEmojis">Show Emojis</label><input checked class="setting"
+                                                                                               id="settingsShowEmojis"
+                                                                                               type="checkbox"></div>
+                    <div class="row"><label for="settingsDateFormat">Date Format</label><input class="setting"
+                                                                                               id="settingsDateFormat"
+                                                                                               type="text"
+                                                                                               value="m/d/Y"></div>
+                    <div class="row sub"><em>Y, M, m, D, and d can be used for the date format.</em></div>
+                    <div class="row"><label for="settingsShowNameLink">Show Name points to</label><select
+                            class="setting" id="settingsShowNameLink">
+                        <option selected value='internal'>Show Info</option>
+                        <option value='tvMaze'>TV Maze</option>
+                        <option value='imdb'>IMDB</option>
+                        <option value='thetvdb'>thetvdb</option>
+                        <option value='duckduckgo'>Search duckduckgo</option>
+                        <option value='bing'>Search bing</option>
+                        <option value='google'>Search google</option>
+                        <option value='custom'>Custom</option>
 
-                </select></div>
-                <div class="hidden customShowNameLink">
-                    <div class="row"><label for="settingsShowNameLinkCustom">Custom URL</label><input class="setting"
-                                                                                                      id="settingsShowNameLinkCustom"
-                                                                                                      type="text"
-                                                                                                      value="">
+                    </select></div>
+                    <div class="hidden customShowNameLink">
+                        <div class="row"><label for="settingsShowNameLinkCustom">Custom URL</label><input
+                                class="setting"
+                                id="settingsShowNameLinkCustom"
+                                type="text"
+                                value="">
+                        </div>
+                        <div class="row sub"><em><strong>%SHOW%</strong> will be replaced with the show name</em></div>
                     </div>
-                    <div class="row sub"><em><strong>%SHOW%</strong> will be replaced with the show name</em></div>
-                </div>
-                <div class="row"><label for="settingsReleaseNotesLink">Renewal Notes points to</label><select
-                        class="setting" id="settingsReleaseNotesLink">
-                    <option value='tvMaze'>TV Maze</option>
-                    <option value='imdb'>IMDB</option>
-                    <option value='thetvdb'>thetvdb</option>
-                    <option selected value='duckduckgo'>Search duckduckgo</option>
-                    <option value='bing'>Search bing</option>
-                    <option value='google'>Search google</option>
-                    <option value='custom'>Custom</option>
+                    <div class="row"><label for="settingsReleaseNotesLink">Renewal Notes points to</label><select
+                            class="setting" id="settingsReleaseNotesLink">
+                        <option value='tvMaze'>TV Maze</option>
+                        <option value='imdb'>IMDB</option>
+                        <option value='thetvdb'>thetvdb</option>
+                        <option selected value='duckduckgo'>Search duckduckgo</option>
+                        <option value='bing'>Search bing</option>
+                        <option value='google'>Search google</option>
+                        <option value='custom'>Custom</option>
 
-                </select></div>
-                <div class="hidden customReleaseNotesLink">
-                    <div class="row"><label for="settingsReleaseNotesLinkCustom">Custom URL</label><input class="setting"
-                                                                                                          id="settingsReleaseNotesLinkCustom"
-                                                                                                          type="text"
-                                                                                                          value="">
+                    </select></div>
+                    <div class="hidden customReleaseNotesLink">
+                        <div class="row"><label for="settingsReleaseNotesLinkCustom">Custom URL</label><input
+                                class="setting"
+                                id="settingsReleaseNotesLinkCustom"
+                                type="text"
+                                value="">
+                        </div>
+                        <div class="row sub"><em><strong>%SHOW%</strong> will be replaced with the show name</em></div>
                     </div>
-                    <div class="row sub"><em><strong>%SHOW%</strong> will be replaced with the show name</em></div>
+
+                    <h2>Links</h2>
+                    <div class="row"><label for="settingsOpenLinksInNewWindow">Open in New Window</label><input
+                            checked class="setting" id="settingsOpenLinksInNewWindow" type="checkbox"></div>
+                    <div class="row"><label for="settingsCheckLocation">Check Location</label><input class="setting"
+                                                                                                     id="settingsCheckLocation"
+                                                                                                     type="checkbox">
+                    </div>
+                    <div class="row hidden"><label for="settingsCountryOkRegex">Country Code OK Regex</label><input
+                            class="setting" id="settingsCountryOkRegex" type="text"></div>
+                    <div class="row"><label for="settingsAppendToSearch">Append to Search</label><input checked
+                                                                                                        class="setting"
+                                                                                                        id="settingsAppendToSearch"
+                                                                                                        type="text">
+                    </div>
+
+                    <div class="row"><a class="addLink" href='javascript:void(0)'>Add
+                        Link</a><br><em><strong>%SEARCH%</strong> will be replaced with the search text.</em></div>
+
+                    <div class="links"></div>
+
+
                 </div>
+                <div class="row buttons settings-buttons">
 
-                <h2>Links</h2>
-                <div class="row"><label for="settingsOpenLinksInNewWindow">Open in New Window</label><input
-                        checked class="setting" id="settingsOpenLinksInNewWindow" type="checkbox"></div>
-                <div class="row"><label for="settingsCheckLocation">Check Location</label><input class="setting"
-                                                                                                 id="settingsCheckLocation"
-                                                                                                 type="checkbox"></div>
-                <div class="row hidden"><label for="settingsCountryOkRegex">Country Code OK Regex</label><input
-                        class="setting" id="settingsCountryOkRegex" type="text"></div>
-                <div class="row"><label for="settingsAppendToSearch">Append to Search</label><input checked class="setting"
-                                                                                                    id="settingsAppendToSearch"
-                                                                                                    type="text">
+                    <div><input class="save" id="saveSettings" type="button" value="Save"> <input class="cancelModal"
+                                                                                                  type="button"
+                                                                                                  value="Cancel"></div>
                 </div>
-
-                <div class="row"><a class="addLink" href='javascript:void(0)'>Add
-                    Link</a><br><em><strong>%SEARCH%</strong> will be replaced with the search text.</em></div>
-
-                <div class="links"></div>
-
-
-            </div>
-            <div class="row buttons settings-buttons">
-
-                <div><input class="save" id="saveSettings" type="button" value="Save"> <input class="cancelModal"
-                                                                                              type="button"
-                                                                                              value="Cancel"></div>
             </div>
         </div>
-    </div>
-    <div id="footer"><span>Uses <a href="https://www.tvmaze.com/" target="_blank">https://www.tvmaze.com/</a></span>
-    </div>
-    <div id="icons">
-        <div id="stats"></div>
-        <a class="toggleDarkMode" href="javascript:void(0)"><span
-                class="material-icons material-icons-outlined toggleDarkMode">toggle_on</span></a>
-        <a class="toggleSettings" href="javascript:void(0)"><span class="material-icons toggleSettings">settings</span></a>
-    </div>
+        <div id="footer"><span>Uses <a href="https://www.tvmaze.com/" target="_blank">https://www.tvmaze.com/</a></span>
+        </div>
+        <div id="icons">
+            <div id="stats"></div>
+            <a class="toggleDarkMode" href="javascript:void(0)"><span
+                    class="material-icons material-icons-outlined toggleDarkMode">toggle_on</span></a>
+            <a class="toggleSettings" href="javascript:void(0)"><span
+                    class="material-icons toggleSettings">settings</span></a>
+        </div>
 
+    </div>
 </div>
 </body>
 <script src="shows.js"></script>
