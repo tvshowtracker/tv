@@ -516,6 +516,7 @@ table.seasons tr:nth-child(even) td {
   max-height: 95vh;
   display: flex;
   flex-direction: column;
+  max-width: 90vw;
 }
 
 #show-details .details {
