@@ -6,8 +6,9 @@ function initStore() {
         window.showsLS = {"settings": {}, "shows": {}};
         if (window.matchMedia) {
             let match = window.matchMedia('(prefers-color-scheme: dark)');
-            console.log("CHECK : ",match);
-            window.showsLS.settings.darkmode = true;
+            if (match.matches) {
+                window.showsLS.settings.darkmode = true;
+            }
         }
         window.localStorage.setItem("tvShowsDataStore", JSON.stringify(window.showsLS));
     } else {
