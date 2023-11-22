@@ -622,6 +622,10 @@ input.save:hover {
   gap: 10px;
 }
 
+.github-logo {
+  content: url("https://raw.githubusercontent.com/tvshowtracker/tv/master/github-mark.png");
+}
+
 @media screen and (max-width: 800px) {
   #show-details .details {
     flex-direction: column;
@@ -789,6 +793,9 @@ input.save:hover {
 
 html.darkmode {
   background: #000;
+}
+html.darkmode .github-logo {
+  content: url("https://raw.githubusercontent.com/tvshowtracker/tv/master/github-mark-dark.png");
 }
 html.darkmode input[type=button] {
   box-shadow: 0 1px 0 0 #999999;
