@@ -688,7 +688,7 @@ input.save:hover {
       .showList > div > div:nth-child(4) {
         width: 5em;
         max-width: 5em;
-        max-height: 5em;
+        min-width: 5em;
       }
     }
 

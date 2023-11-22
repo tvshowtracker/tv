@@ -628,7 +628,7 @@ input.save:hover {
   #wrapper #scheduled .showList > div > div:nth-child(4), #wrapper #waiting .showList > div > div:nth-child(4), #wrapper #ended .showList > div > div:nth-child(4) {
     width: 5em;
     max-width: 5em;
-    max-height: 5em;
+    min-width: 5em;
   }
   #wrapper .link-row label.centered {
     text-align: left;
