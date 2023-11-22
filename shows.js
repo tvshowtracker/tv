@@ -741,6 +741,7 @@ function addShowToStorage(show, isUpdate = false, callback) {
             })
             .catch(function () {
                 // This is where you run code if the server returns any errors
+                 console.error("Something went wrong", e);
             });
     } else {
         niceAlert("Error: Show already exists");
