@@ -1,0 +1,751 @@
+.hidden {
+  display: none !important;
+}
+
+.showlist-item.clicked {
+  background: rgba(255, 255, 0, 0.5) !important;
+}
+
+.showList > div:hover {
+  background: rgba(255, 255, 0, 0.18) !important;
+}
+
+a {
+  cursor: pointer;
+  color: blue;
+}
+
+body {
+  background-size: contain;
+  background-repeat: repeat-x;
+  max-height: 100%;
+}
+
+#wrapper {
+  max-height: calc(100vh - 62px);
+  overflow: auto;
+}
+
+table a {
+  text-decoration: none;
+  color: #3838d4;
+}
+
+#ended {
+  margin-bottom: 1.2em;
+  flex-grow: 1;
+  color: #999;
+}
+#ended a.showName {
+  color: #999;
+}
+
+.has-next-episode {
+  position: relative;
+}
+
+.has-next-episodeNO .demote {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.no-more-episodesNO .thumb {
+  opacity: 0;
+  z-index: -1000;
+}
+
+.searchDD1 {
+  display: inline-flex;
+  height: 32px;
+  align-items: center;
+}
+
+td.renewal .searchDD > span {
+  margin-right: 0;
+}
+
+.thumb {
+  position: absolute;
+  margin-left: -1.5em;
+}
+
+.thumb img {
+  max-height: 2em;
+  vertical-align: middle;
+  border-radius: 5px;
+}
+
+table a.remove, table a.edit {
+  font-size: 0.8em;
+}
+
+.past {
+  color: darkgreen;
+  font-weight: bold;
+}
+
+.material-icons {
+  vertical-align: text-bottom;
+}
+
+.nope {
+  color: red;
+}
+
+.finished {
+  color: darkred;
+}
+
+#results ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.already-stored {
+  color: #999;
+}
+
+.showList {
+  margin-bottom: 1em;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+.showList > div:nth-child(even) {
+  background: rgba(0, 0, 0, 0.05);
+}
+.showList > div {
+  display: flex;
+  padding: 5px;
+  gap: 5px;
+  align-items: center;
+}
+.showList > div > div:first-child {
+  width: 30px;
+  min-width: 30px;
+  max-width: 30px;
+  max-height: 24px;
+}
+.showList > div > div:first-child a {
+  display: inline-flex;
+  align-items: center;
+}
+.showList > div > div:nth-child(2) {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.showList > div > div:nth-child(3) {
+  width: 5em;
+  min-width: 5em;
+  max-width: 5em;
+}
+.showList > div > div:nth-child(4) {
+  width: 5em;
+  min-width: 5em;
+  max-width: 5em;
+}
+.showList > div > div:nth-child(5) {
+  display: flex;
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  justify-content: flex-end;
+  margin-right: 5px;
+}
+
+#waiting .showList > div > div:nth-child(4), #ended .showList > div > div:nth-child(4), #scheduled .showList > div > div:nth-child(4) {
+  width: 10em;
+  min-width: 10em;
+  max-width: 10em;
+  padding-right: 5px;
+}
+#waiting .showList > div > div:nth-child(3), #ended .showList > div > div:nth-child(3), #scheduled .showList > div > div:nth-child(3) {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  display: flex;
+  justify-content: center;
+}
+#waiting .showList > div > div:nth-child(5), #ended .showList > div > div:nth-child(5), #scheduled .showList > div > div:nth-child(5) {
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  display: flex;
+  gap: 10px;
+  margin-right: 0;
+}
+
+.currentLive {
+  color: green;
+}
+
+#results ul li {
+  margin-bottom: 0.2em;
+}
+
+#results ul li:first-child {
+  margin-bottom: 1em;
+}
+
+.smiley {
+  font-size: 1.2em;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.renewed, .renewed .showName, .renewed a.releaseNotes {
+  color: darkgreen !important;
+}
+
+.scheduled, .scheduled.renewed {
+  color: #111;
+  background: #00ff003d !important;
+}
+
+#dateFormat {
+  width: 6em;
+}
+
+td.renewal span {
+  margin-right: 0.5em;
+}
+
+.loading-wrapper {
+  opacity: 0.2;
+}
+
+.showlist-item a.showName, .showlist-item a.releaseNotes {
+  text-decoration: none;
+  color: #333;
+}
+.showlist-item a.showName .material-icons, .showlist-item a.releaseNotes .material-icons {
+  color: blue !important;
+}
+
+.showlist-item .noRenewalNote .releaseNotes {
+  opacity: 0;
+}
+
+.showlist-item .noRenewalNote .editRenewal .material-icons {
+  margin-top: 0;
+}
+
+.hasRenewalNote {
+  margin-right: 5px;
+}
+
+.showlist-item .editRenewal {
+  opacity: 0;
+  margin-right: 0;
+  position: absolute;
+  margin-top: -2px;
+}
+
+.showlist-item:hover .noRenewalNote .releaseNotes {
+  opacity: 1;
+}
+
+.showlist-item:hover .editRenewal {
+  opacity: 1;
+}
+
+#identCheck {
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.importExportButtons {
+  flex-grow: 1;
+}
+
+#show-details .img img {
+  width: 140px;
+}
+#show-details .buttons-row {
+  margin-top: 10px;
+}
+#show-details .links-wrapper > div {
+  display: flex;
+  flex-direction: column;
+}
+#show-details .links-wrapper span {
+  display: block;
+  font-weight: bold;
+}
+#show-details .top {
+  display: flex;
+  gap: 10px;
+}
+#show-details .top .right span {
+  font-weight: bold;
+  margin-right: 0.2em;
+}
+
+.modal > div {
+  background: whitesmoke;
+  padding: 14px;
+  border-radius: 10px;
+  position: relative;
+  border: 3px solid black;
+}
+
+.showSubheader {
+  margin-top: -14px;
+  margin-bottom: 14px;
+  font-size: 1.2em;
+}
+
+.modal h1 {
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+#addEdit .row label {
+  width: 5em;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+#addEditRenewal .row label {
+  width: 7em;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.showName {
+  color: #333;
+}
+
+.showName:hover {
+  color: blue !important;
+  text-decoration: underline;
+}
+
+.modal .row.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#results-wrapper {
+  position: relative;
+}
+
+.results-loader {
+  position: absolute;
+  top: 0;
+}
+
+.externals {
+  display: none;
+}
+
+body.good .externals {
+  display: inline-block;
+}
+
+div.warning {
+  border: 2px dashed red;
+  padding: 10px;
+  font-weight: bold;
+  color: red;
+  background: rgba(255, 0, 0, 0.14);
+  float: left;
+  margin: 0 0 20px 0;
+}
+
+div.good {
+  border: 2px dashed green;
+  padding: 10px;
+  font-weight: bold;
+  color: darkgreen;
+  background: rgba(43, 255, 0, 0.14);
+  float: left;
+  margin: 0 0 20px 0;
+}
+
+.clear {
+  clear: both;
+}
+
+#waiting td:first-child span:hover, #waiting td.renewal span:hover, .searchDD:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+.ended {
+  color: #999;
+}
+
+#waiting .ended {
+  display: none;
+}
+
+#waiting.show .ended {
+  display: table-row;
+}
+
+.loader {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #68996f;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.reload, .reloadloader, .hourglass {
+  width: 20px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0.4em;
+}
+
+h1 a {
+  font-size: 0.6em;
+}
+
+table {
+  margin-bottom: 2em;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+}
+table td:last-child {
+  text-align: right;
+}
+
+#footer {
+  display: flex;
+  justify-content: center;
+  font-style: italic;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#stats {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#wrapper {
+  max-width: 800px;
+  width: 800px;
+  border-radius: 10px;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  background-color: rgba(250, 249, 251, 0.9);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+#wrapper #icons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font-family: "Yantramanav", Arial, serif;
+}
+
+html {
+  background: #faf9fb;
+}
+
+table.seasons {
+  width: auto;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+table.seasons th {
+  background: rgba(0, 0, 0, 0.2);
+}
+table.seasons th, table.seasons td {
+  text-align: left;
+  padding: 3px 10px;
+}
+table.seasons tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#settingsDateFormat {
+  width: 5em;
+}
+
+#show-details {
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#show-details .details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: auto;
+}
+
+#settings {
+  max-height: 95vh;
+}
+#settings h1 {
+  min-height: 40px;
+  max-height: 40px;
+  margin-bottom: 0;
+}
+#settings .buttons-row {
+  min-height: 50px;
+  max-height: 50px;
+  background: red;
+}
+#settings .inner {
+  padding-top: 15px;
+  max-height: calc(95vh - 90px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+ul.seasons {
+  margin-left: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+input[type=button] {
+  font-size: 15px;
+  font-family: Arial, serif;
+  height: 28px;
+  padding: 0 10px;
+  cursor: pointer;
+  border-width: 1px;
+  color: #666666;
+  border-color: #dcdcdc;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 1px 0 0 #ffffff;
+  background: linear-gradient(#f9f9f9, #e9e9e9);
+}
+
+input[type=button]:hover {
+  background: linear-gradient(#e9e9e9, #f9f9f9);
+}
+
+input.save {
+  border-color: #67c41a;
+  background: linear-gradient(#b9ff68, #90ff21);
+  box-shadow: inset 0 1px 0 0 #b8e356;
+}
+
+input.save:hover {
+  background: linear-gradient(#a5cc52, #b8e356);
+}
+
+.importExportButtons input {
+  border-color: #84bbf3;
+  box-shadow: inset 0 1px 0 0 #dcecfb;
+  background: linear-gradient(#d6e7fe, #bddbfa);
+}
+
+.importExportButtons input:hover {
+  background: linear-gradient(#bddbfa, #d6e7fe);
+}
+
+#show-details .imgLinks {
+  display: flex;
+  gap: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  #show-details .details {
+    flex-direction: column;
+  }
+
+  #wrapper {
+    max-width: 100%;
+    min-width: 100%;
+    border: none;
+    padding: 0;
+  }
+
+  /*
+  #wrapper #icons {
+    position: fixed;
+    top: unset;
+    bottom: 0;
+    left:0;
+    right:0;
+    background: #faf9fb;
+    border-top: 2px solid rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    gap:2em;
+    padding: 10px 10px;
+  }
+
+   */
+}
+.toggleDarkMode {
+  color: #000;
+}
+
+.row {
+  margin-bottom: 10px;
+}
+.row.sub {
+  margin-top: -8px;
+}
+.row label {
+  width: 10em;
+  display: inline-block;
+}
+
+.link-row label {
+  width: 3.5em;
+}
+.link-row label.centered {
+  text-align: center;
+}
+
+.link-row {
+  margin-bottom: 5px;
+}
+
+.link-row:last-child {
+  margin-bottom: 0;
+}
+
+#countryCheck {
+  border: 2px dashed black;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  padding: 10px;
+  min-width: 10em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+#countryCheck.ok {
+  border: 2px dashed green;
+  font-weight: bold;
+  color: darkgreen;
+  background: #e4fae0;
+}
+#countryCheck.notok {
+  border: 2px dashed red;
+  font-weight: bold;
+  color: red;
+  background: #fddcdc;
+}
+
+.links .row {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  border-radius: 10px;
+}
+.links .row .removeLink {
+  margin-left: 5px;
+  min-width: 2em;
+}
+.links .row div:first-child {
+  flex-grow: 1;
+}
+.links .row div:first-child > div {
+  display: flex;
+  align-items: center;
+}
+.links .row div:first-child > div > input {
+  flex-grow: 1;
+}
+
+#settings input[type=checkbox] {
+  margin: 0;
+  padding: 0;
+}
+
+html.darkmode {
+  background: #000;
+}
+html.darkmode input[type=button] {
+  box-shadow: 0 1px 0 0 #999999;
+}
+html.darkmode #wrapper {
+  background: rgba(255, 255, 255, 0.2);
+  color: whitesmoke;
+}
+html.darkmode #wrapper h1 {
+  color: #e2e2e2;
+}
+html.darkmode #wrapper .links .row {
+  background: rgba(255, 255, 255, 0.1);
+}
+html.darkmode #wrapper .toggleDarkMode {
+  color: #ccc;
+}
+html.darkmode #wrapper a, html.darkmode #wrapper .showlist-item a.releaseNotes .material-icons {
+  color: #96abfe !important;
+}
+html.darkmode #wrapper div.renewed a.showName, html.darkmode #wrapper div.renewed a.releaseNotes {
+  color: #64c964 !important;
+}
+html.darkmode #wrapper #ended a.showName {
+  color: #999 !important;
+}
+html.darkmode #wrapper .currentLive {
+  color: #64c964 !important;
+}
+html.darkmode #wrapper .finished {
+  color: #ff7070 !important;
+}
+html.darkmode #wrapper .showList {
+  border: 1px solid #666;
+}
+html.darkmode #wrapper .showList > div:nth-child(even) {
+  background: rgba(0, 0, 0, 0.1);
+}
+html.darkmode .modal > div {
+  background: #444;
+}
+
+/*# sourceMappingURL=shows.css.map */
