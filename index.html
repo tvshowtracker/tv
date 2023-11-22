@@ -16,7 +16,7 @@
 <body class="unchecked">
 <div id="wrapper">
 
-    <h1>Current Shows <a href='javascript:getLinks();'>Links</a> <a href='javascript:addShow("currentShows");'>Add</a>
+    <h1>Current <a href='javascript:getLinks();'>Links</a> <a href='javascript:addShow("currentShows");'>Add</a>
     </h1>
     <div class="hidden" id="countryCheck"></div>
     <div class='hidden' id='connectionStatus'></div>
@@ -66,6 +66,7 @@
     </div>
     <div class="hidden modal cancelModal" id="settings-wrapper">
         <div id="settings">
+            <a id='github' title="Visit TV Show Tracker Github Repository" href='https://github.com/tvshowtracker/tv' target='_blank'><img src='github-mark.png'></a>
             <h1>Settings</h1>
             <div class="inner">
                 <div class="row"><label for="settingsShowEmojis">Show Emojis</label><input checked class="setting"
@@ -74,7 +75,7 @@
                 <div class="row"><label for="settingsDateFormat">Date Format</label><input class="setting" id="settingsDateFormat"
                                                                                            type="text"
                                                                                            value="H-m-d"></div>
-                <div class="row sub"><em>H, m, M, d, and D can be used for the date format.</em></div>
+                <div class="row sub"><em>Y, M, m, D, and d can be used for the date format.</em></div>
                 <div class="row"><label for="settingsShowNameLink">Show Name points to</label><select
                         class="setting" id="settingsShowNameLink">
                     <option selected value='internal'>Show Info</option>
@@ -95,7 +96,7 @@
                     </div>
                     <div class="row sub"><em><strong>%SHOW%</strong> will be replaced with the show name</em></div>
                 </div>
-                <div class="row"><label for="settingsReleaseNotesLink">Release Notes points to</label><select
+                <div class="row"><label for="settingsReleaseNotesLink">Renewal Notes points to</label><select
                         class="setting" id="settingsReleaseNotesLink">
                     <option value='tvMaze'>TV Maze</option>
                     <option value='imdb'>IMDB</option>

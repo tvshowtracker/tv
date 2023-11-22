@@ -1,8 +1,8 @@
 function initStore() {
     // If not, create it
     if (typeof window.localStorage.tvShowsDataStore === "undefined") {
-        window.showsLS = JSON.stringify({"settings": {}, "shows": {}});
-        window.localStorage.setItem("tvShowsDataStore", window.showsLS);
+        window.showsLS = {"settings": {}, "shows": {}};
+        window.localStorage.setItem("tvShowsDataStore", JSON.stringify(window.showsLS));
     } else {
         //console.log("Local storage is ", getShowsObject());
     }
@@ -107,7 +107,7 @@ document.addEventListener("change", function (e) {
 
 });
 document.addEventListener("click", function (e) {
-    console.log("Target is ", e.target, e.target.closest("a"));
+    //console.log("Target is ", e.target, e.target.closest("a"));
     if (e.target.id === "searchShow") {
         searchShows();
     } else if (e.target.closest("#countryCheck")) {
@@ -366,10 +366,20 @@ function getShowsObject() {
     if (typeof window.showsLS === "undefined") {
         try {
             window.showsLS = JSON.parse(window.localStorage.getItem("tvShowsDataStore"));
+            if (!window.showsLS) {
+                window.showsLS={};
+            }
+            if (typeof window.showsLS.settings === "undefined") {
+                window.showsLS.settings={};
+            }
+            if (typeof window.showsLS.shows === "undefined") {
+                window.showsLS.shows={};
+            }
         } catch (e) {
             window.showsLS = {"settings": {}, "shows": {}};
         }
     }
+
     return window.showsLS;
 }
 
@@ -743,7 +753,7 @@ function searchShows() {
     fetch(url) // Call the fetch function passing the url of the API as a parameter
         .then(res => res.json())
         .then(function (res) {
-            //  console.log(res)
+              //console.log("hmm");
             let showsLS = getShowsObject();
 
             // Your code for handling the data you get from the API
@@ -781,8 +791,9 @@ function searchShows() {
             document.getElementById("results").appendChild(ul);
 
         })
-        .catch(function () {
+        .catch(function (e) {
             // This is where you run code if the server returns any errors
+            console.error("Something went wrong", e);
         });
 }
 
@@ -933,30 +944,32 @@ function buildTable(showsLS, table) {
                     t2_1.classList.add("hidden");
 
                     let pos = 0;
-                    for (let l of showsLS.settings.links) {
+                    if (showsLS.settings.links) {
+                        for (let l of showsLS.settings.links) {
 
-                        let a = document.createElement("a");
-                        a.innerHTML = l.name;
-                        let url = l.url;
+                            let a = document.createElement("a");
+                            a.innerHTML = l.name;
+                            let url = l.url;
 
-                        if (l.search) {
-                            let sre = new RegExp(l.search, "g");
-                            searchText = searchText.replace(sre, l.replace);
+                            if (l.search) {
+                                let sre = new RegExp(l.search, "g");
+                                searchText = searchText.replace(sre, l.replace);
+                            }
+
+                            url = url.replace(/%SEARCH%/, encodeURIComponent(searchText));
+
+                            if (showsLS.settings.settingsOpenLinksInNewWindow) {
+                                a.target = "_blank";
+                            }
+                            a.href = url;
+
+                            if (pos > 0) {
+                                t2_1.append(" · ");
+                            }
+                            pos++;
+                            t2_1.appendChild(a);
+
                         }
-
-                        url = url.replace(/%SEARCH%/, encodeURIComponent(searchText));
-
-                        if (showsLS.settings.settingsOpenLinksInNewWindow) {
-                            a.target = "_blank";
-                        }
-                        a.href = url;
-
-                        if (pos > 0) {
-                            t2_1.append(" · ");
-                        }
-                        pos++;
-                        t2_1.appendChild(a);
-
                     }
                     t2.appendChild(t2_1);
 

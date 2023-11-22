@@ -570,12 +570,21 @@ input[type=button]:hover {
 
 input.save {
   border-color: #67c41a;
-  background: linear-gradient(#b9ff68, #90ff21);
+  background: linear-gradient(#dbf7bb, #a4ed5a);
   box-shadow: inset 0 1px 0 0 #b8e356;
 }
 
 input.save:hover {
-  background: linear-gradient(#a5cc52, #b8e356);
+  background: linear-gradient(#a4ed5a, #dbf7bb);
+}
+
+#github {
+  max-width: 25px;
+  position: absolute;
+  right: 15px;
+}
+#github img {
+  width: 25px;
 }
 
 .importExportButtons input {
