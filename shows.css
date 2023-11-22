@@ -4,6 +4,7 @@
 
 html, body {
   height: 100%;
+  margin: 0;
 }
 
 .showlist-item.clicked {
@@ -26,7 +27,8 @@ body {
 }
 
 #wrapper {
-  max-height: calc(100vh - 62px);
+  max-height: 100%;
+  min-height: 100%;
   overflow: auto;
   box-sizing: border-box;
 }

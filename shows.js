@@ -410,11 +410,12 @@ function showDetailsPretty(show) {
     right.innerHTML += "<div><span>Started:</span>" + getDate(show.premiered) + "</div>";
     right.innerHTML += "<div><span>Ended:</span>" + (show.ended ? getDate(show.ended) : '') + "</div>";
     right.innerHTML += "<div><span>Schedule:</span>" + show.schedule.days.join(", ") + "</div>";
-    right.innerHTML += "<div><span>Next Episode:</span>";
+    let nextEpisode = "<div><span>Next Episode:</span>";
     if (typeof show._embedded !== "undefined" && typeof show._embedded.nextepisode !== "undefined") {
-        right.innerHTML += getDate(show._embedded.nextepisode.airstamp) + " " + show._embedded.nextepisode.airtime;
+        nextEpisode += getDate(show._embedded.nextepisode.airstamp) + " " + show._embedded.nextepisode.airtime;
     }
-    right.innerHTML += "</div>";
+    nextEpisode += "</div>";
+    right.innerHTML += nextEpisode;
     if (typeof show.network !== "undefined" && show.network !== null) {
         right.innerHTML += "<div><span>Network:</span>" + show.network.name + " (" + show.network.country.name + ")</div>";
     } else {
