@@ -1232,6 +1232,7 @@ function getDate(dateText) {
         }
         return showsLS.settings.settingsDateFormat
             .replace('Y', d.getFullYear().toString())
+            .replace('y', d.getFullYear().toString().substring(2, 4))
             .replace('m', (d.getMonth() + 1).toString())
             .replace('d', d.getDate().toString())
             .replace('M', (d.getMonth() + 1).toString().padStart(2, '0'))
