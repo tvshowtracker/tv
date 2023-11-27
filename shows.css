@@ -457,6 +457,12 @@ table td:last-child {
     transform: rotate(360deg);
   }
 }
+hr.separator {
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  border: 1px dashed rgba(0, 0, 0, 0.25);
+}
+
 #stats {
   position: absolute;
   top: 10px;
@@ -489,7 +495,7 @@ table td:last-child {
 #wrapper #icons {
   position: absolute;
   top: 10px;
-  right: 30px;
+  right: 20px;
   display: flex;
   gap: 10px;
 }

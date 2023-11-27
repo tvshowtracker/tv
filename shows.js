@@ -929,9 +929,9 @@ function buildTable(showsLS, table) {
                     let div = document.createElement("div");
 
                     if (show.nextEpisode && new Date(show.nextEpisode.airstamp.substring(0, 4), show.nextEpisode.airstamp.substring(5, 7) - 2, parseInt(show.nextEpisode.airstamp.substring(8, 10))) <= new Date()) {
-                        t1.innerHTML = "<a class='demote' data-show='" + id + "'><span class='material-icons currentLive demote' data-show='" + id + "'>live_tv</span></a>";
+                        t1.innerHTML = "<a class='demote' data-show='" + id + "' title='There is an episode within the next 7 days. You can still click to move down.'><span class='material-icons currentLive demote' data-show='" + id + "'>live_tv</span></a>";
                     } else {
-                        t1.innerHTML = "<a class='demote' data-show='" + id + "'><span class='material-icons demote' data-show='" + id + "'>arrow_downward</span></a>";
+                        t1.innerHTML = "<a class='demote' data-show='" + id + "' title='Move down'><span class='material-icons demote' data-show='" + id + "'>arrow_downward</span></a>";
                     }
 
                     if (show.nextEpisode && new Date(show.nextEpisode.airstamp) <= today) {
@@ -1019,7 +1019,7 @@ function buildTable(showsLS, table) {
                         t4.innerHTML = "<span class='finished'><em>No Episode</em></span>";
                     }
                     let t5 = document.createElement("div");
-                    t5.innerHTML = "<a class='reload' data-show='" + id + "'><span class='material-icons reload' data-show='" + id + "'>refresh</span></a>";
+                    t5.innerHTML = "<a title='Get the latest information for this show' class='reload' data-show='" + id + "'><span class='material-icons reload' data-show='" + id + "'>refresh</span></a>";
                     div.appendChild(t1);
                     div.appendChild(t2);
                     div.appendChild(t3);
@@ -1036,7 +1036,7 @@ function buildTable(showsLS, table) {
                     let div = document.createElement("div");
 
 
-                    t1.innerHTML = "<a class='promote' data-show='" + id + "'><span class='material-icons promote' data-show='" + id + "'>arrow_upward</span></a>";
+                    t1.innerHTML = "<a class='promote' data-show='" + id + "' title='Move Up'><span class='material-icons promote' data-show='" + id + "'>arrow_upward</span></a>";
 
 
                     let t2 = document.createElement("div");
@@ -1130,13 +1130,13 @@ function buildTable(showsLS, table) {
                     if (!scheduled && rn.dataset.renewalNote.match(/renewed/i)) {
                         div.classList.add("renewed");
                     }
-                    rn.innerHTML = "<span class='material-icons editRenewal' data-show='" + id + "' >edit</span>";
+                    rn.innerHTML = "<span  title='Edit your renewal notes for this show' class='material-icons editRenewal' data-show='" + id + "' >edit</span>";
                     t4.appendChild(rn)
 
 
                     let t5 = document.createElement("div");
-                    t5.innerHTML = "<a class='reload' data-show='" + id + "'><span class='material-icons reload' data-show='" + id + "'>refresh</span></a>";
-                    t5.innerHTML += "<a class='remove' data-show='" + id + "'><span class='material-icons remove' data-show='" + id + "'>delete</span></a>";
+                    t5.innerHTML = "<a title='Get the latest information for this show' class='reload' data-show='" + id + "'><span class='material-icons reload' data-show='" + id + "'>refresh</span></a>";
+                    t5.innerHTML += "<a title='Delete this show' class='remove' data-show='" + id + "'><span class='material-icons remove' data-show='" + id + "'>delete</span></a>";
                     div.appendChild(t1);
                     div.appendChild(t2);
                     div.appendChild(t3);
