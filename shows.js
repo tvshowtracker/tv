@@ -972,7 +972,6 @@ function buildTable(showsLS, table) {
                     if (showsLS.settings.links) {
                         for (let l of showsLS.settings.links) {
                             let thisSearchText=searchText;
-                            console.log("PROCESS", l);
 
                             let a = document.createElement("a");
                             a.innerHTML = l.name;
@@ -980,7 +979,6 @@ function buildTable(showsLS, table) {
 
                             thisSearchText = thisSearchText.replace(/[^a-zA-Z0-9]/, "");
                             if (l.search) {
-                                console.log("Replacing ", l.search, "with", l.replace);
                                 let sre = new RegExp(l.search, "g");
                                 thisSearchText = thisSearchText.replace(sre, l.replace);
                             }
