@@ -978,6 +978,7 @@ function buildTable(showsLS, table) {
                             a.innerHTML = l.name;
                             let url = l.url;
 
+                            thisSearchText = thisSearchText.replace(/[^a-zA-Z0-9]/, "");
                             if (l.search) {
                                 console.log("Replacing ", l.search, "with", l.replace);
                                 let sre = new RegExp(l.search, "g");
