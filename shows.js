@@ -1031,7 +1031,8 @@ function buildTable(showsLS, table) {
                     div.dataset.showid = id;
                     wrapper.appendChild(div);
                 }
-            } else if (table === "pendingShows") {
+            }
+            else if (table === "pendingShows") {
 
                 if ((ended && show.show.ended) || (scheduled && show.nextEpisode !== null) || (!ended && !scheduled && !show.show.ended && show.nextEpisode === null)) {
 
@@ -1147,7 +1148,8 @@ function buildTable(showsLS, table) {
                     div.classList.add("showlist-item");
                     div.dataset.showid = id;
                     wrapper.appendChild(div);
-                } else {
+                }
+                else {
                     // console.log("Ignore for",table,ended,show.show.ended, show.show.name);
                 }
             }
