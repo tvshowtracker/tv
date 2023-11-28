@@ -4,7 +4,7 @@ A simple TV Show Tracker that saves your data locally in your browser. This app 
 
 ## Usage
 
-Go to https://tvshowtracker.github.io/tv/ to use the TV Show Tracker
+You can either go to https://tvshowtracker.github.io/tv/ to use the TV Show Tracker, or you can download the project to your local machine and open the `index.html` file with your browser.
 
 TV Show Tracker groups your shows into two areas - currently airing shows, and not currently airing shows. You can manually move shows between these two areas.
 
