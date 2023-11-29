@@ -422,10 +422,9 @@ function showDetailsPretty(show) {
     right.innerHTML += nextEpisode;
     if (typeof show.network !== "undefined" && show.network !== null) {
         right.innerHTML += "<div><span>Network:</span>" + show.network.name + " (" + show.network.country.name + ")</div>";
-    } else {
-        right.innerHTML += "<div><span>Network:</span></div>";
+    } else if (typeof show.webChannel !== "undefined" && show.webChannel !== null) {
+        right.innerHTML += "<div><span>WebChannel: "+show.webChannel.name+"</span></div>";
     }
-
 
     top.appendChild(right);
 
@@ -675,6 +674,7 @@ function addShowToStorage(show, isUpdate = false, callback) {
                     "ended": res.ended,
                     "externals": res.externals,
                     "network": res.network,
+                    "webChannel": res.webChannel,
                     "officialSite": res.officialSite,
                     "day": res.schedule.days,
                     "tvMazeUrl": res.url,
@@ -788,7 +788,15 @@ function searchShows() {
 
                     a.innerHTML = show.show.name;
                     if (show.show.premiered !== null) {
-                        a.innerHTML += " (" + show.show.premiered.substring(0, 4) + ")";
+                        a.innerHTML += " (" + show.show.premiered.substring(0, 4)
+
+                         if (typeof show.show.network !== "undefined" && show.show.network !== null) {
+                            a.innerHTML += ", " + show.show.network.name;
+                        } else if (typeof show.show.webChannel !== "undefined" && show.show.webChannel !== null) {
+                            a.innerHTML += ", "+show.show.webChannel.name;
+                        }
+
+                         a.innerHTML +=  ")";
                     }
 
                     li.appendChild(a);
