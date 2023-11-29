@@ -1059,7 +1059,7 @@ function buildTable(showsLS, table) {
                     }
 
                     t2a.classList.add("showName");
-                    if (showsLS.settings.settingsShowNameLink === "internal") {
+                    if (showsLS.settings.settingsShowNameLink === "undefined" || !showsLS.settings.settingsShowNameLink || showsLS.settings.settingsShowNameLink === "internal") {
                         t2a.classList.add("internal");
                     } else {
                         t2a.target = "_blank";
