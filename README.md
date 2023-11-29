@@ -2,6 +2,17 @@
 
 A simple TV Show Tracker that saves your data locally in your browser. This app uses the api provided by https://www.tvmaze.com
 
+The screenshots below feature a random selection of shows designed to highlight the various sections of the webapp.
+
+Screenshot: Light mode
+
+![ScreenShot](lightmode.png)
+
+Screenshot: Dark mode
+
+![ScreenShot](darkmode.png)
+
+
 ## Usage
 
 You can either go to https://tvshowtracker.github.io/tv/ to use the TV Show Tracker, or you can download the project to your local machine and open the `index.html` file with your browser.
