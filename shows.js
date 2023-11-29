@@ -950,7 +950,7 @@ function buildTable(showsLS, table) {
                     let t2a = document.createElement("a");
                     t2a.innerHTML = show.show.name;
                     t2a.classList.add("showName");
-                    if (showsLS.settings.settingsShowNameLink === "internal") {
+                    if (showsLS.settings.settingsShowNameLink === "undefined" || !showsLS.settings.settingsShowNameLink || showsLS.settings.settingsShowNameLink === "internal") {
                         t2a.classList.add("internal");
                     } else {
                         t2a.target = "_blank";
