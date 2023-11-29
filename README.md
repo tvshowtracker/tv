@@ -1,6 +1,6 @@
 # TV Show Tracker
 
-A simple TV Show Tracker that saves your data locally in your browser. This app uses the api provided by https://www.tvmaze.com
+A simple TV Show Tracker that saves your data locally in your browser. This app uses the free api provided by https://www.tvmaze.com
 
 The screenshots below feature a random selection of shows designed to highlight the various sections of the webapp.
 
