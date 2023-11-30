@@ -106,6 +106,7 @@ td.renewal .searchDD > span {
   margin-bottom: 1em;
   border: 1px solid #333;
   border-radius: 5px;
+  overflow: hidden;
 }
 .showList > div:nth-child(even) {
   background: rgba(0, 0, 0, 0.05);

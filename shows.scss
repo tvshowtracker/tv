@@ -113,6 +113,7 @@ td.renewal .searchDD > span {
   margin-bottom: 1em;
   border: 1px solid #333;
   border-radius: 5px;
+  overflow: hidden;
 
   > div:nth-child(even) {
     background: rgba(0, 0, 0, 0.05);
