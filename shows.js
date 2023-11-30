@@ -959,7 +959,7 @@ function buildTable(showsLS, table) {
 
                     let searchText = show.show.name;
 
-                    if (show.nextEpisode) {
+                    if (show.nextEpisode && show.nextEpisode.number) {
                         let nextEp = document.createElement("span");
                         let seasonText = "S" + show.nextEpisode.season.toString().padStart(2, '0') + "E" + show.nextEpisode.number.toString().padStart(2, '0');
                         searchText += " " + seasonText;
