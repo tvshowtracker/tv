@@ -334,7 +334,7 @@ function refreshNextPendingShow(table = "waiting") {
     let next = document.querySelector("#" + table + " span.reloadPending");
     if (next) {
         next.classList.remove("reloadPending");
-        next.closest("div").querySelector(".hourglass").remove();
+          next.closest("div").querySelector(".hourglass").classList.add("hidden");
 
         reload(next, function () {
             let left = document.querySelectorAll("#" + table + " span.reloadPending").length;
@@ -345,12 +345,14 @@ function refreshNextPendingShow(table = "waiting") {
             } else {
                 next.closest("div.showlist-item").classList.remove("loading-wrapper");
                 next.closest("div").querySelector(".reloadloader").remove();
-                next.classList.remove("hidden");
-                setTimeout(function () {
-                    refreshNextPendingShow(table);
-                }, 500);
+                next.closest("div").querySelector(".hourglass").innerHTML="hourglass_empty";
+
+                next.closest("div").querySelector(".hourglass").classList.remove("hidden");
+
+                refreshNextPendingShow(table);
+
             }
-        });
+        }, 500);
     } else {
 
     }
@@ -359,7 +361,7 @@ function refreshNextPendingShow(table = "waiting") {
 }
 
 
-function reload(me, callback) {
+function reload(me, callback, timeout = 0) {
     let p = me.closest("div");
     me.closest("div.showlist-item").classList.add("loading-wrapper");
     if (p.querySelectorAll(".loader").length === 0) {
@@ -369,7 +371,7 @@ function reload(me, callback) {
         loader.innerHTML = "<span class='loader'></span>";
         me.insertAdjacentElement("afterend", loader);
     }
-    updateShow(me.dataset.show, callback);
+    updateShow(me.dataset.show, callback, timeout);
 
 }
 
@@ -634,11 +636,11 @@ function doShowNameClick(e) {
 
 }
 
-function updateShow(show, callback) {
-    return addShowToStorage(show, true, callback)
+function updateShow(show, callback, timeout=0) {
+    addShowToStorage(show, true, callback, timeout);
 }
 
-function addShowToStorage(show, isUpdate = false, callback) {
+function addShowToStorage(show, isUpdate = false, callback = false, timeout = 0) {
     //console.log("Add show", show);
 
     let showsLS = getShowsObject();
@@ -653,13 +655,11 @@ function addShowToStorage(show, isUpdate = false, callback) {
         span.classList.add("results-loader");
         span.classList.add("loader");
         resultsDiv.insertAdjacentElement("afterend", span);
-
         let url = "https://api.tvmaze.com/shows/" + encodeURIComponent(show) + "?embed[]=nextepisode&embed[]=seasons";
-        fetch(url) // Call the fetch function passing the url of the API as a parameter
+        fetch(url, {cache: "no-cache"}) // Call the fetch function passing the url of the API as a parameter
             .then(res => res.json())
             .then(function (res) {
-                //console.log("Got data from tvmaze", res);
-
+                setTimeout(function() {
                 let showObj;
                 if (isUpdate) {
                     showObj = showsLS.shows[show];
@@ -754,6 +754,8 @@ function addShowToStorage(show, isUpdate = false, callback) {
                 } else {
                     refreshDisplay(showsLS);
                 }
+
+                }, timeout);
             })
             .catch(function (e) {
                 // This is where you run code if the server returns any errors
