@@ -19,7 +19,7 @@ You can either go to https://tvshowtracker.github.io/tv/ to use the TV Show Trac
 
 TV Show Tracker groups your shows into two areas - currently airing shows, and not currently airing shows. You can manually move shows between these two areas.
 
-Within the not currently airing shows, there are three further areas - scheduled, waiting, and ended. TV Show Tracker will automatically place your not currently airing shows in the relevant area.
+Within the not currently airing shows, there are three further areas - scheduled, waiting, and ended. TV Show Tracker will automatically place your not currently airing shows in scheduled, waiting, or ended.
 
 ### Managing Shows
 
