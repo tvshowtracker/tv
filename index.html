@@ -37,22 +37,22 @@
             </p>
             <p>This message will disappear after you add your first show.</p>
         </div>
-        <h1><span title='Shows that you are currently watching. These will stay here until you move them down.'>Current</span> <a title='Show links to watch/download shows' href='javascript:getLinks();'>Links</a> <a title='Add a new show. It will be put in the current area.' href='javascript:addShow("currentShows");'>Add</a>
+        <h1><span title='Shows that you are currently watching. These will stay here until you move them down.'>Currently Airing</span> <a title='Show links to watch/download shows' href='javascript:getLinks();'>Links</a> <a title='Add a new show. It will be put in the current area.' href='javascript:addShow("currentShows");'>Add</a>
         </h1>
         <div class="hidden" id="countryCheck"></div>
         <div class='hidden' id='connectionStatus'></div>
         <div class='clear'></div>
         <div class="wrapper" id="current"><span class="loader"></span></div>
         <hr class='separator' />
-        <h1><span title='Shows that have a date for the next episode.'>Scheduled</span> <a title='Get the latest updates for all scheduled shows' href='javascript:refreshScheduledShows();'>Refresh All</a> <a
-                title='Add a new show. It will be put in scheduled/waiting/ended automatically.' href='javascript:addShow("pendingShows");'>Add</a></h1>
+        <h1><span title='Shows that are not currently airing.'>Not Currently Airing</span> <a
+            title='Add a new show. It will be put in scheduled/waiting/ended automatically.' href='javascript:addShow("pendingShows");'>Add</a></h1>
+        <h2><span title='Shows that have a date for the next episode.'>Scheduled</span> <a title='Get the latest updates for all scheduled shows' href='javascript:refreshScheduledShows();'>Refresh All</a></h2>
         <div class="wrapper" id="scheduled"><span class="loader"></span></div>
 
-        <h1><span title="Shows that do not yet have a new season scheduled.">Waiting/Hoping for Next Season</span> <a title='Get the latest updates for all shows waiting for a new season' href='javascript:refreshPendingShows();'>Refresh All</a> <a
-                title='Add a new show. It will be put in scheduled/waiting/ended automatically.' href='javascript:addShow("pendingShows");'>Add</a></h1>
+        <h2><span title="Shows that do not yet have a new season scheduled.">Waiting/Hoping for Next Season</span> <a title='Get the latest updates for all shows waiting for a new season' href='javascript:refreshPendingShows();'>Refresh All</a></h2>
         <div class="wrapper" id="waiting"><span class="loader"></span></div>
 
-        <h1><span title="Shows that have an ended date and no more seasons are expected.">Ended</span></h1>
+        <h2><span title="Shows that have an ended date and no more seasons are expected.">Ended</span></h2>
         <div class="wrapper" id="ended"><span class="loader"></span></div>
 
         <div class="hidden modal  cancelModal" id="addEdit-wrapper">
