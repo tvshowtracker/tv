@@ -508,6 +508,10 @@ hr.separator {
   color: #f0820d;
 }
 
+#firstTime .export {
+  color: #f0820d;
+}
+
 body {
   display: flex;
   justify-content: center;
