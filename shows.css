@@ -504,6 +504,9 @@ hr.separator {
   display: flex;
   gap: 10px;
 }
+#wrapper #icons .export {
+  color: #f0820d;
+}
 
 body {
   display: flex;

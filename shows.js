@@ -142,7 +142,7 @@ document.addEventListener("click", function (e) {
         }
     } else if (e.target.id === "saveSettings") {
         saveSettings();
-    } else if (e.target.id === "export") {
+    } else if (e.target.id === "export" || (e.target.closest("a") && e.target.closest("a").classList.contains("export"))) {
         exportJSON();
     } else if (e.target.id === "import") {
         let showsLS = getShowsObject();
@@ -159,6 +159,7 @@ document.addEventListener("click", function (e) {
     } else if (e.target.classList.contains("toggleSettings")) {
         document.getElementById("settings-wrapper").classList.remove("hidden");
     } else if (e.target.classList.contains("addShow")) {
+        markChanged(true);
         addShowToStorage(e.target.dataset.show);
     } else if (e.target.closest("a") !== null && e.target.closest("a").classList.contains("internal") && e.target.closest("a").classList.contains("showName")) {
         doShowNameClick(e);
@@ -187,15 +188,20 @@ document.addEventListener("click", function (e) {
 function exportJSON() {
     let showsLS = getShowsObject();
 
+
     let json = JSON.stringify(showsLS);
     let blob = new Blob([json], {type: "application/json"});
     let url = URL.createObjectURL(blob);
 
     let a = document.createElement('a');
-    a.download = "tvShows.json";
+    let date= new Date().toLocaleString().replaceAll(/[^0-9a-zA-Z]+/g, '_');
+    a.download = "tvShowTrackerExport_"+date+".json";
     a.href = url;
 
     a.click();
+
+    markChanged(false);
+    commitToLS(showsLS);
 }
 
 function importJSON() {
@@ -287,6 +293,7 @@ function getLinkHref(linkType, show, showsLS) {
 function promote(show) {
     let showsLS = getShowsObject();
     showsLS.shows[show].status = "currentShows";
+    markChanged(true);
     commitToLS(showsLS);
     refreshDisplay(showsLS);
 }
@@ -294,6 +301,7 @@ function promote(show) {
 function demote(show) {
     let showsLS = getShowsObject();
     showsLS.shows[show].status = "pendingShows";
+    markChanged(true);
     commitToLS(showsLS);
     refreshDisplay(showsLS);
 }
@@ -302,10 +310,22 @@ function remove(show) {
     let showsLS = getShowsObject();
     if (confirm("Are you sure you want to remove " + showsLS.shows[show].show.name + "?")) {
         delete showsLS.shows[show];
+        markChanged(true);
         commitToLS(showsLS);
         refreshDisplay(showsLS);
     }
 
+}
+
+function markChanged(newStatus=true) {
+    let showsLS = getShowsObject();
+    showsLS.hasChanged=newStatus;
+    if (newStatus) {
+        document.querySelector("#icons .export").classList.remove("hidden");
+    }
+    else {
+        document.querySelector("#icons .export").classList.add("hidden");
+    }
 }
 
 function refreshScheduledShows() {
@@ -517,6 +537,7 @@ function saveSettings() {
         settingsLinks.push(thisLink);
     }
     showsLS.settings.links = settingsLinks;
+    markChanged(true);
     commitToLS(showsLS);
     refreshDisplay(showsLS);
     closeModal();
@@ -530,6 +551,7 @@ function saveSetting(k, v) {
     }
     showsLS.settings[k] = v;
     //console.log("SET tvShowsSettings to ",JSON.stringify(settings));
+    markChanged(true);
     commitToLS(showsLS);
 }
 
@@ -987,13 +1009,13 @@ function buildTable(showsLS, table) {
                             a.innerHTML = l.name;
                             let url = l.url;
 
-                            thisSearchText = thisSearchText.replace(/[^a-zA-Z0-9\s]/, "");
+                            thisSearchText = thisSearchText.replaceAll(/[^a-zA-Z0-9\s]/g, "");
                             if (l.search) {
                                 let sre = new RegExp(l.search, "g");
-                                thisSearchText = thisSearchText.replace(sre, l.replace);
+                                thisSearchText = thisSearchText.replaceAll(sre, l.replace);
                             }
 
-                            url = url.replace(/%SEARCH%/, encodeURIComponent(thisSearchText));
+                            url = url.replaceAll(/%SEARCH%/g, encodeURIComponent(thisSearchText));
 
                             if (showsLS.settings.settingsOpenLinksInNewWindow) {
                                 a.target = "_blank";
@@ -1257,6 +1279,10 @@ function getDate(dateText) {
 function loadSettings() {
 
     let showsLS = getShowsObject();
+
+    console.log("Has Changed : "+showsLS.hasChanged);
+
+    markChanged(showsLS.hasChanged??false);
 
     //console.log("S",showsLS);
     if (typeof showsLS.settings !== "undefined" && showsLS.settings.darkmode) {
