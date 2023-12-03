@@ -1049,6 +1049,7 @@ function buildTable(showsLS, table) {
 
                     if (show.nextEpisode) {
                         t4.innerHTML = getDate(show.nextEpisode.airstamp);
+                        t4.title=getDateTitle(show.nextEpisode.airstamp);
                     } else {
                         t4.innerHTML = "<span class='finished'><em>No Episode</em></span>";
                     }
@@ -1105,7 +1106,7 @@ function buildTable(showsLS, table) {
                         }
 
 
-                        nextEp += " : " + getDate(show.nextEpisode.airstamp);
+                        nextEp += " : <span title='Airs in "+getTimeUntil(new Date(show.nextEpisode.airstamp))+"'>" + getDate(show.nextEpisode.airstamp) +"</span>";
                         //console.log("CHECK:",show.show.name,new Date(show.nextEpisode.airstamp), today, nextWeek);
                         if (show.nextEpisode && new Date(show.nextEpisode.airstamp) <= today) {
                             t1.innerHTML = "<a class='promote' data-show='" + id + "'><span class='material-icons currentLive promote' data-show='" + id + "'>live_tv</span></a>";
@@ -1255,6 +1256,73 @@ function showLinks() {
     }
 }
 
+function getDateTitle(dateText) {
+    if (dateText === null) {
+        return "Unknown";
+    }
+    else {
+        let showsLS = getShowsObject();
+
+        let d = new Date(dateText);
+        if (typeof showsLS.settings.settingsDateFormat === "undefined") {
+            showsLS.settings.settingsDateFormat = "m/d/Y";
+        }
+
+        /*
+        let date = showsLS.settings.settingsDateFormat
+            .replace('Y', d.getFullYear().toString())
+            .replace('y', d.getFullYear().toString().substring(2, 4))
+            .replace('m', (d.getMonth() + 1).toString())
+            .replace('d', d.getDate().toString())
+            .replace('M', (d.getMonth() + 1).toString().padStart(2, '0'))
+            .replace('D', d.getDate().toString().padStart(2, '0'));
+
+         */
+        let togo=getTimeUntil(d);
+        let date="Airs at "+(d.getHours()+1).toString().padStart(2, '0')+":"+d.getMinutes().toString().padStart(2, '0')+" ("+togo+" from now)";
+        return date;
+    }
+}
+
+function getTimeUntil(date) {
+    let d = Math.abs(date.getTime() - new Date().getTime()) / 1000;                           // delta
+    let r = {};                                                                // result
+    let s = {                                                                  // structure
+        year: 31536000,
+        month: 2592000,
+        week: 604800, // uncomment row to ignore
+        day: 86400,   // feel free to add your own row
+        hour: 3600,
+        minute: 60,
+        second: 1
+    };
+
+    let str="";
+    let biggest=false;
+    Object.keys(s).forEach(function(key){
+        r[key] = Math.floor(d / s[key]);
+        if ((r[key]>0) && key!=="second") {
+            if (!biggest) {
+                biggest=key;
+            }
+            if (biggest === "day" || biggest === "hour" || biggest === "minute" || key==="year" || key==="month" || key==="week"|| key==="day") {
+                if (str) {
+                    str+=", ";
+                }
+                str+=r[key]+" "+key;
+                if (r[key]!==1) {
+                    str+="s";
+                }
+            }
+        }
+        d -= r[key] * s[key];
+    });
+
+    // for example: {year:0,month:0,week:1,day:2,hour:34,minute:56,second:7}
+    console.log(r);
+    return str;
+
+}
 function getDate(dateText) {
     //console.log("getDate", dateText);
     if (dateText === null) {
