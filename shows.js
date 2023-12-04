@@ -118,6 +118,11 @@ document.addEventListener("change", function (e) {
     }
 
 });
+document.addEventListener("mouseover", function (e) {
+    if (e.target.classList.contains("countdownTitle")) {
+        e.target.title="Airs in "+getTimeUntil(new Date(e.target.dataset.airstamp));
+    }
+});
 document.addEventListener("click", function (e) {
     //console.log("Target is ", e.target, e.target.closest("a"));
     if (e.target.id === "searchShow") {
@@ -1048,6 +1053,8 @@ function buildTable(showsLS, table) {
                     let t4 = document.createElement("div");
 
                     if (show.nextEpisode) {
+                        t4.classList.add("countdownTitle");
+                        t4.dataset.airstamp=show.nextEpisode.airstamp;
                         t4.innerHTML = getDate(show.nextEpisode.airstamp);
                         t4.title=getDateTitle(show.nextEpisode.airstamp);
                     } else {
@@ -1106,7 +1113,7 @@ function buildTable(showsLS, table) {
                         }
 
 
-                        nextEp += " : <span title='Airs in "+getTimeUntil(new Date(show.nextEpisode.airstamp))+"'>" + getDate(show.nextEpisode.airstamp) +"</span>";
+                        nextEp += " : <span class='countdownTitle' data-airstamp='"+show.nextEpisode.airstamp+"' title='Airs in "+getTimeUntil(new Date(show.nextEpisode.airstamp))+"'>" + getDate(show.nextEpisode.airstamp) +"</span>";
                         //console.log("CHECK:",show.show.name,new Date(show.nextEpisode.airstamp), today, nextWeek);
                         if (show.nextEpisode && new Date(show.nextEpisode.airstamp) <= today) {
                             t1.innerHTML = "<a class='promote' data-show='" + id + "'><span class='material-icons currentLive promote' data-show='" + id + "'>live_tv</span></a>";
@@ -1301,6 +1308,10 @@ function getTimeUntil(date) {
     let biggest=false;
     Object.keys(s).forEach(function(key){
         r[key] = Math.floor(d / s[key]);
+        if (key === "minute") {
+            r[key]++;
+        }
+
         if ((r[key]>0) && key!=="second") {
             if (!biggest) {
                 biggest=key;
@@ -1308,6 +1319,9 @@ function getTimeUntil(date) {
             if (biggest === "day" || biggest === "hour" || biggest === "minute" || key==="year" || key==="month" || key==="week"|| key==="day") {
                 if (str) {
                     str+=", ";
+                }
+                if (key==="day" && (biggest==="year"||biggest==="month"||biggest==="week")) {
+                    r[key]++;
                 }
                 str+=r[key]+" "+key;
                 if (r[key]!==1) {
@@ -1319,7 +1333,7 @@ function getTimeUntil(date) {
     });
 
     // for example: {year:0,month:0,week:1,day:2,hour:34,minute:56,second:7}
-    console.log(r);
+    //console.log(r);
     return str;
 
 }
@@ -1348,7 +1362,7 @@ function loadSettings() {
 
     let showsLS = getShowsObject();
 
-    console.log("Has Changed : "+showsLS.hasChanged);
+    //console.log("Has Changed : "+showsLS.hasChanged);
 
     markChanged(showsLS.hasChanged??false);
 
