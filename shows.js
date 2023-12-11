@@ -120,7 +120,7 @@ document.addEventListener("change", function (e) {
 });
 document.addEventListener("mouseover", function (e) {
     if (e.target.classList.contains("countdownTitle")) {
-        e.target.title="Airs in "+getTimeUntil(new Date(e.target.dataset.airstamp));
+        e.target.title=getTimeUntil(new Date(e.target.dataset.airstamp), "Airs in ", "Aired ", "", " ago");
     }
 });
 document.addEventListener("click", function (e) {
@@ -1113,7 +1113,7 @@ function buildTable(showsLS, table) {
                         }
 
 
-                        nextEp += " : <span class='countdownTitle' data-airstamp='"+show.nextEpisode.airstamp+"' title='Airs in "+getTimeUntil(new Date(show.nextEpisode.airstamp))+"'>" + getDate(show.nextEpisode.airstamp) +"</span>";
+                        nextEp += " : <span class='countdownTitle' data-airstamp='"+show.nextEpisode.airstamp+"' title='"+getTimeUntil(new Date(show.nextEpisode.airstamp), "Airs in ", "Aired ", "", " ago")+"'>" + getDate(show.nextEpisode.airstamp) +"</span>";
                         //console.log("CHECK:",show.show.name,new Date(show.nextEpisode.airstamp), today, nextWeek);
                         if (show.nextEpisode && new Date(show.nextEpisode.airstamp) <= today) {
                             t1.innerHTML = "<a class='promote' data-show='" + id + "'><span class='material-icons currentLive promote' data-show='" + id + "'>live_tv</span></a>";
@@ -1285,13 +1285,13 @@ function getDateTitle(dateText) {
             .replace('D', d.getDate().toString().padStart(2, '0'));
 
          */
-        let togo=getTimeUntil(d);
+        let togo=getTimeUntil(d, "Airs in ", "Aired ", "", " ago");
         let date="Airs at "+(d.getHours()+1).toString().padStart(2, '0')+":"+d.getMinutes().toString().padStart(2, '0')+" ("+togo+" from now)";
         return date;
     }
 }
 
-function getTimeUntil(date) {
+function getTimeUntil(date, prefixAfter, prefixBefore, suffixAfter, suffixBefore) {
     let d = Math.abs(date.getTime() - new Date().getTime()) / 1000;                           // delta
     let r = {};                                                                // result
     let s = {                                                                  // structure
@@ -1334,6 +1334,12 @@ function getTimeUntil(date) {
 
     // for example: {year:0,month:0,week:1,day:2,hour:34,minute:56,second:7}
     //console.log(r);
+    if (date.getTime() > new Date().getTime()) {
+        str=prefixAfter+str+suffixAfter;
+    }
+    else {
+        str=prefixBefore+str+suffixBefore;
+    }
     return str;
 
 }
