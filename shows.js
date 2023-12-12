@@ -368,7 +368,6 @@ function refreshNextPendingShow(table = "waiting") {
                 let showsLS = getShowsObject();
                 refreshDisplay(showsLS);
             } else {
-                next.closest("div.showlist-item").classList.remove("loading-wrapper");
                 next.closest("div").querySelector(".reloadloader").remove();
                 next.closest("div").querySelector(".hourglass").innerHTML="hourglass_empty";
 
