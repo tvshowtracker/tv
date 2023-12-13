@@ -189,9 +189,8 @@ document.addEventListener("click", function (e) {
 });
 
 function exportJSON() {
+    markChanged(false);
     let showsLS = getShowsObject();
-
-
     let json = JSON.stringify(showsLS);
     let blob = new Blob([json], {type: "application/json"});
     let url = URL.createObjectURL(blob);
@@ -203,7 +202,7 @@ function exportJSON() {
 
     a.click();
 
-    markChanged(false);
+
     commitToLS(showsLS);
 }
 
@@ -241,6 +240,7 @@ function importJSON() {
             if (typeof showsLS === "object" && typeof showsLS.settings !== "undefined" && typeof showsLS.shows !== "undefined") {
                 commitToLS(showsLS);
                 refreshDisplay(showsLS);
+                markChanged(false);
                 closeModal();
             } else {
                 niceAlert("The file does not contain valid JSON");
@@ -752,8 +752,9 @@ function addShowToStorage(show, isUpdate = false, callback = false, timeout = 0)
 
                 let hasChanged = false;
 
-                if (showsLS.shows[show].nextEpisode !== showObj.nextEpisode
-                    || showsLS.shows[show].show.status !== showObj.show.status
+                if (showsLS.shows[show].show.status !== showObj.show.status
+                    || (showsLS.shows[show].nextEpisode === null && showObj.nextEpisode !== null)
+                    || (showsLS.shows[show].nextEpisode !== null && showObj.nextEpisode !== null && showObj.nextEpisode.airstamp !== showsLS.shows[show].nextEpisode.airstamp)
                 ) {
                     if (typeof window.changedShows === "undefined") {
                         window.changedShows = [];
