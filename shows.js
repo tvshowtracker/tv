@@ -11,8 +11,6 @@ function initStore() {
             }
         }
         window.localStorage.setItem("tvShowsDataStore", JSON.stringify(window.showsLS));
-    } else {
-        //console.log("Local storage is ", getShowsObject());
     }
     let showsLS = getShowsObject();
     if (Object.keys(showsLS.shows).length === 0) {
@@ -267,7 +265,6 @@ function closeModal() {
 }
 
 function getLinkHref(linkType, show, showsLS) {
-    //console.log("Get", linkType, "link for", show);
     let link;
     switch (showsLS.settings[linkType]) {
         case 'imdb':
@@ -361,7 +358,7 @@ function refreshNextPendingShow(table = "waiting") {
         next.classList.remove("reloadPending");
           next.closest("div").querySelector(".hourglass").classList.add("hidden");
 
-        reload(next, function () {
+        reload(next, function (hasChanged) {
             let left = document.querySelectorAll("#" + table + " span.reloadPending").length;
 
             if (left === 0) {
@@ -370,8 +367,13 @@ function refreshNextPendingShow(table = "waiting") {
             } else {
                 next.closest("div").querySelector(".reloadloader").remove();
                 next.closest("div").querySelector(".hourglass").innerHTML="hourglass_empty";
-
                 next.closest("div").querySelector(".hourglass").classList.remove("hidden");
+
+                if (hasChanged) {
+                    next.closest(".showlist-item").classList.add("highlight");
+                }
+
+                console.log("HMMM",window.changedShows);
 
                 refreshNextPendingShow(table);
 
@@ -492,7 +494,6 @@ function showDetailsPretty(show) {
 }
 
 function toggleDarkMode(toggleIcon) {
-    //console.log("toggle Dark Mode", toggleIcon);
     let html = document.querySelector("html");
     if (html.classList.contains("darkmode")) {
         html.classList.remove("darkmode");
@@ -675,7 +676,6 @@ function addShowToStorage(show, isUpdate = false, callback = false, timeout = 0)
     if (typeof showsLS.shows[show] === "undefined" || isUpdate) {
 
         let resultsDiv = document.getElementById("results");
-        //console.log("SET OPACITY TO 0 64");
         resultsDiv.style.opacity = "0";
         let span = document.createElement("span");
         span.classList.add("results-loader");
@@ -686,12 +686,12 @@ function addShowToStorage(show, isUpdate = false, callback = false, timeout = 0)
             .then(res => res.json())
             .then(function (res) {
                 setTimeout(function() {
+
                 let showObj;
                 if (isUpdate) {
                     showObj = showsLS.shows[show];
                 } else {
                     showObj = {"renewalNote": "", "status": document.getElementById("addEdit").dataset.addTo};
-
                 }
 
                 showObj.show = {
@@ -728,7 +728,6 @@ function addShowToStorage(show, isUpdate = false, callback = false, timeout = 0)
                             } else {
                                 break;
                             }
-                            //console.log("CHECK",s.premiereDate,d);
                         }
                     }
 
@@ -750,33 +749,33 @@ function addShowToStorage(show, isUpdate = false, callback = false, timeout = 0)
                     };
 
                 } else {
-                    //     console.log("Setting next episode to null");
+
                     showObj.nextEpisode = null;
-//console.log("Set next episode to null");
-
                 }
-                //   console.log("a1");
 
+                let hasChanged = false;
+
+                if (showsLS.shows[show].nextEpisode !== showObj.nextEpisode
+                    || showsLS.shows[show].show.status !== showObj.show.status
+                ) {
+                    if (typeof window.changedShows === "undefined") {
+                        window.changedShows = [];
+                    }
+                    window.changedShows.push(show);
+                    hasChanged = true;
+                }
                 showsLS.shows[show] = showObj;
-
-
-                //   console.log("a");
 
                 let loader = resultsDiv.parentNode.querySelector(".loader");
                 commitToLS(showsLS);
-                //  console.log('b', loader);
                 loader.remove();
-                //   console.log("SET OPACITY TO 1 106");
                 resultsDiv.style.opacity = "1";
                 resultsDiv.innerHTML = "";
-                //     console.log('c');
-                //     document.getElementById("addEdit-wrapper").classList.add("hidden");
                 document.getElementById("addEditName").value = "";
                 document.getElementById("addEditName").focus();
                 document.getElementById("firstTime").classList.add("hidden");
-                //     console.log('d');
                 if (typeof callback === "function") {
-                    callback();
+                    callback(hasChanged);
                 } else {
                     refreshDisplay(showsLS);
                 }
@@ -784,7 +783,6 @@ function addShowToStorage(show, isUpdate = false, callback = false, timeout = 0)
                 }, timeout);
             })
             .catch(function (e) {
-                // This is where you run code if the server returns any errors
                 console.error("Something went wrong", e);
             });
     } else {
@@ -798,16 +796,13 @@ function searchShows() {
     fetch(url) // Call the fetch function passing the url of the API as a parameter
         .then(res => res.json())
         .then(function (res) {
-            //console.log("hmm");
             let showsLS = getShowsObject();
 
-            // Your code for handling the data you get from the API
             let ul = document.createElement('ul');
 
             for (let show of res) {
-                //console.log("work", show, showsLS);
+                //console.log("Processing", show, showsLS);
                 let li = document.createElement('li');
-
 
                 if (typeof showsLS.shows[show.show.id] === "undefined") {
                     let a = document.createElement('a');
@@ -839,13 +834,11 @@ function searchShows() {
 
             }
             document.getElementById("results").innerHTML = "";
-            //console.log("SET OPACITY TO 1 163");
             document.getElementById("results").style.opacity = "1";
             document.getElementById("results").appendChild(ul);
 
         })
         .catch(function (e) {
-            // This is where you run code if the server returns any errors
             console.error("Something went wrong", e);
         });
 }
@@ -858,13 +851,11 @@ function refreshDisplay(showsLS) {
     if (typeof showsLS === "undefined") {
         showsLS = getShowsObject();
     }
-    //console.log("Refresh Display");
     let items = buildTable(showsLS, "currentShows");
     document.getElementById("current").innerHTML = "";
     document.getElementById("current").appendChild(items);
 
     items = buildTable(showsLS, "scheduledShows");
-    //console.log("Table Built: ",items);
     document.getElementById("scheduled").innerHTML = "";
     document.getElementById("scheduled").appendChild(items);
 
@@ -875,10 +866,20 @@ function refreshDisplay(showsLS) {
     items = buildTable(showsLS, "ended");
     document.getElementById("ended").innerHTML = "";
     document.getElementById("ended").appendChild(items);
+
+    if (typeof window.changedShows !== "undefined" && window.changedShows.length>0) {
+        for (let id of window.changedShows) {
+            let change=document.querySelector(".showlist-item.show"+id);
+            if (change !== null) {
+                change.classList.add("highlight");
+                change.title="This show has been updated!";
+            }
+        }
+        window.changedShows = [];
+    }
 }
 
 function buildTable(showsLS, table) {
-    //console.log("build table", table, showsLS);
     let wrapper = document.createElement("div");
     wrapper.classList.add("showList");
     let ended = false;
@@ -920,7 +921,6 @@ function buildTable(showsLS, table) {
             } else if (fb === null) {
                 return -1;
             }
-            // console.log("Comp is ",fa,fb);
             if (fa < fb) {
                 return -1;
             }
@@ -954,9 +954,6 @@ function buildTable(showsLS, table) {
             show.status = "currentShows";
         }
         if (show.status === table) {
-            // console.log("SHOW", id, show.show.name, table);
-
-            //   console.log(show.nextEpisode);
 
             let t1 = document.createElement("div");
             if (table === "currentShows") {
@@ -1067,6 +1064,7 @@ function buildTable(showsLS, table) {
                     div.appendChild(t4);
                     div.appendChild(t5);
                     div.classList.add("showlist-item");
+                    div.classList.add("show"+id);
                     div.dataset.showid = id;
                     wrapper.appendChild(div);
                 }
@@ -1113,7 +1111,6 @@ function buildTable(showsLS, table) {
 
 
                         nextEp += " : <span class='countdownTitle' data-airstamp='"+show.nextEpisode.airstamp+"' title='"+getTimeUntil(new Date(show.nextEpisode.airstamp), "Airs in ", "Aired ", "", " ago")+"'>" + getDate(show.nextEpisode.airstamp) +"</span>";
-                        //console.log("CHECK:",show.show.name,new Date(show.nextEpisode.airstamp), today, nextWeek);
                         if (show.nextEpisode && new Date(show.nextEpisode.airstamp) <= today) {
                             t1.innerHTML = "<a class='promote' data-show='" + id + "'><span class='material-icons currentLive promote' data-show='" + id + "'>live_tv</span></a>";
 
@@ -1185,12 +1182,11 @@ function buildTable(showsLS, table) {
                     div.appendChild(t4);
                     div.appendChild(t5);
                     div.classList.add("showlist-item");
+                    div.classList.add("show"+id);
                     div.dataset.showid = id;
                     wrapper.appendChild(div);
                 }
-                else {
-                    // console.log("Ignore for",table,ended,show.show.ended, show.show.name);
-                }
+
             }
 
         }
@@ -1332,7 +1328,6 @@ function getTimeUntil(date, prefixAfter, prefixBefore, suffixAfter, suffixBefore
     });
 
     // for example: {year:0,month:0,week:1,day:2,hour:34,minute:56,second:7}
-    //console.log(r);
     if (date.getTime() > new Date().getTime()) {
         str=prefixAfter+str+suffixAfter;
     }
@@ -1343,7 +1338,6 @@ function getTimeUntil(date, prefixAfter, prefixBefore, suffixAfter, suffixBefore
 
 }
 function getDate(dateText) {
-    //console.log("getDate", dateText);
     if (dateText === null) {
         return "Unknown";
     } else {
@@ -1367,11 +1361,8 @@ function loadSettings() {
 
     let showsLS = getShowsObject();
 
-    //console.log("Has Changed : "+showsLS.hasChanged);
-
     markChanged(showsLS.hasChanged??false);
 
-    //console.log("S",showsLS);
     if (typeof showsLS.settings !== "undefined" && showsLS.settings.darkmode) {
         toggleDarkMode(document.querySelector("span.toggleDarkMode"));
     }
@@ -1384,7 +1375,6 @@ function loadSettings() {
             let el = document.getElementById(i);
             if (el) {
                 let val = showsLS.settings[i];
-                //console.log("Working", i, val, el);
                 if (el.type === "checkbox") {
                     if (val) {
                         el.checked = true;

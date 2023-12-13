@@ -25,31 +25,47 @@
             <p>To set your preferences, click the <span class='material-icons'>settings</span> icon in the top right
                 hand corner. Use the <span class='material-icons material-icons-outlined'>toggle_on</span> icon to
                 toggle dark mode.</p>
-            <p>The tracker is split into two main sections - Shows that are currently airing go in the <strong>Currently Airing</strong> section.
-                Shows that are not currently airing go in the <strong>Not Currently Airing</strong> section, which is split into <strong>Scheduled</strong>, <strong>Waiting/Hoping</strong>, and <strong>Ended</strong>.</p>
-            <p>You can manually move shows between Currently Airing and Not Currently Airing. The system will automatically sort not currently airing shows into Scheduled, Waiting/Hoping or Ended.</p>
+            <p>The tracker is split into two main sections - Shows that are currently airing go in the <strong>Currently
+                Airing</strong> section.
+                Shows that are not currently airing go in the <strong>Not Currently Airing</strong> section, which is
+                split into <strong>Scheduled</strong>, <strong>Waiting/Hoping</strong>, and <strong>Ended</strong>.</p>
+            <p>You can manually move shows between Currently Airing and Not Currently Airing. The system will
+                automatically sort not currently airing shows into Scheduled, Waiting/Hoping or Ended.</p>
 
             <p>To add a show, click one of the add links. </p>
             <p>All data is stored locally in your browser. You can export and import your setup from the settings
-                screen. If you have changed something, an orange <span class='material-icons material-icons-outlined export'>save</span> icon will appear to the left of the dark mode toggle to indicate a change since the last export. You can click the icon to export your data.</p>
+                screen. If you have changed something, an orange <span
+                        class='material-icons material-icons-outlined export'>save</span> icon will appear to the left
+                of the dark mode toggle to indicate a change since the last export. You can click the icon to export
+                your data.</p>
             <p>For full instructions on how to use this site, please see the <a
-                    href='https://github.com/tvshowtracker/tv/blob/master/README.md' target='_blank'>README.md</a> file in the Github repository. A link to the Github repository can also be found at the top right of the settings screen.
+                    href='https://github.com/tvshowtracker/tv/blob/master/README.md' target='_blank'>README.md</a> file
+                in the Github repository. A link to the Github repository can also be found at the top right of the
+                settings screen.
             </p>
             <p>This message will disappear after you add your first show.</p>
         </div>
-        <h1><span title='Shows that you are currently watching. These will stay here until you move them down.'>Currently Airing</span> <a title='Show links to watch/download shows' href='javascript:getLinks();'>Links</a> <a title='Add a new show. It will be put in the current area.' href='javascript:addShow("currentShows");'>Add</a>
+        <h1><span title='Shows that you are currently watching. These will stay here until you move them down.'>Currently Airing</span>
+            <a title='Show links to watch/download shows' href='javascript:getLinks();'>Links</a> <a
+                    title='Add a new show. It will be put in the current area.'
+                    href='javascript:addShow("currentShows");'>Add</a>
         </h1>
         <div class="hidden" id="countryCheck"></div>
         <div class='hidden' id='connectionStatus'></div>
         <div class='clear'></div>
         <div class="wrapper" id="current"><span class="loader"></span></div>
-        <hr class='separator' />
+        <hr class='separator'/>
         <h1><span title='Shows that are not currently airing.'>Not Currently Airing</span> <a
-            title='Add a new show. It will be put in scheduled/waiting/ended automatically.' href='javascript:addShow("pendingShows");'>Add</a></h1>
-        <h2><span title='Shows that have a date for the next episode.'>Scheduled</span> <a title='Get the latest updates for all scheduled shows' href='javascript:refreshScheduledShows();'>Refresh All</a></h2>
+                title='Add a new show. It will be put in scheduled/waiting/ended automatically.'
+                href='javascript:addShow("pendingShows");'>Add</a></h1>
+        <h2><span title='Shows that have a date for the next episode.'>Scheduled</span> <a
+                title='Get the latest updates for all scheduled shows' href='javascript:refreshScheduledShows();'>Refresh
+            All</a></h2>
         <div class="wrapper" id="scheduled"><span class="loader"></span></div>
 
-        <h2><span title="Shows that do not yet have a new season scheduled.">Waiting/Hoping for Next Season</span> <a title='Get the latest updates for all shows waiting for a new season' href='javascript:refreshPendingShows();'>Refresh All</a></h2>
+        <h2><span title="Shows that do not yet have a new season scheduled.">Waiting/Hoping for Next Season</span> <a
+                title='Get the latest updates for all shows waiting for a new season'
+                href='javascript:refreshPendingShows();'>Refresh All</a></h2>
         <div class="wrapper" id="waiting"><span class="loader"></span></div>
 
         <h2><span title="Shows that have an ended date and no more seasons are expected.">Ended</span></h2>
@@ -181,7 +197,8 @@
         </div>
         <div id="icons">
             <div id="stats"></div>
-            <a title="A show has changed since your last export. Click to export now." class="export hidden" href="javascript:void(0)"><span
+            <a title="A show has changed since your last export. Click to export now." class="export hidden"
+               href="javascript:void(0)"><span
                     class="material-icons material-icons-outlined">save</span></a>
             <a title="Toggle dark mode" class="toggleDarkMode" href="javascript:void(0)"><span
                     class="material-icons material-icons-outlined toggleDarkMode">toggle_on</span></a>

@@ -473,6 +473,7 @@ h1 {
 h1 a {
   font-size: 0.6em;
 }
+
 h2 a {
   font-size: 0.8em;
 }
@@ -511,6 +512,7 @@ hr.separator {
   margin-left: -20px;
   border: 1px dashed rgba(0, 0, 0, 0.25);
 }
+
 #stats {
   position: absolute;
   top: 10px;
@@ -549,14 +551,19 @@ hr.separator {
     right: 20px;
     display: flex;
     gap: 10px;
+
     .export {
       color: #f0820d;
     }
   }
 }
 
+.highlight {
+  background: #c2eeff;
+}
+
 #firstTime .export {
-      color: #f0820d;
+  color: #f0820d;
 }
 
 body {
@@ -915,10 +922,12 @@ input.save:hover {
 html.darkmode {
   background: #000;
 
+  .highlight {
+    background: #164161;
+  }
+
   #firstTime {
-
     border: 1px solid #ccc;
-
   }
 
   .showlist-item.imminent {
@@ -1036,7 +1045,7 @@ html.darkmode {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -1056,6 +1065,7 @@ html.darkmode {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
 .material-icons.material-icons-outlined {
   font-family: 'Material Icons Outlined';
 }
