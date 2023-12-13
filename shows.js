@@ -373,8 +373,6 @@ function refreshNextPendingShow(table = "waiting") {
                     next.closest(".showlist-item").classList.add("highlight");
                 }
 
-                console.log("HMMM",window.changedShows);
-
                 refreshNextPendingShow(table);
 
             }
@@ -686,10 +684,9 @@ function addShowToStorage(show, isUpdate = false, callback = false, timeout = 0)
             .then(res => res.json())
             .then(function (res) {
                 setTimeout(function() {
-
                 let showObj;
                 if (isUpdate) {
-                    showObj = showsLS.shows[show];
+                    showObj = structuredClone(showsLS.shows[show]);
                 } else {
                     showObj = {"renewalNote": "", "status": document.getElementById("addEdit").dataset.addTo};
                 }

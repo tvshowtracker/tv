@@ -508,8 +508,8 @@ hr.separator {
   color: #f0820d;
 }
 
-.highlight {
-  background: #c2eeff;
+.showList .showlist-item.highlight {
+  background: #c2eeff !important;
 }
 
 #firstTime .export {
@@ -826,8 +826,8 @@ input.save:hover {
 html.darkmode {
   background: #000;
 }
-html.darkmode .highlight {
-  background: #164161;
+html.darkmode .showList .showlist-item.highlight {
+  background: #164161 !important;
 }
 html.darkmode #firstTime {
   border: 1px solid #ccc;
