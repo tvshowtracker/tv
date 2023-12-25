@@ -752,7 +752,7 @@ function addShowToStorage(show, isUpdate = false, callback = false, timeout = 0)
 
                 let hasChanged = false;
 
-                if (showsLS.shows[show].show.status !== showObj.show.status
+                if (typeof showsLS.shows[show] === "undefined" || showsLS.shows[show].show.status !== showObj.show.status
                     || (showsLS.shows[show].nextEpisode === null && showObj.nextEpisode !== null)
                     || (showsLS.shows[show].nextEpisode !== null && showObj.nextEpisode !== null && showObj.nextEpisode.airstamp !== showsLS.shows[show].nextEpisode.airstamp)
                 ) {
@@ -1214,7 +1214,7 @@ function getLinks() {
                 let icon = document.createElement("span");
                 icon.classList.add("material-icons");
                 let details = document.createElement("span");
-                details.innerHTML = res.YourFuckingISP + " @ " + res.YourFuckingLocation
+                details.innerHTML = res.YourFuckingISP + " @ " + res.YourFuckingLocation + "("+res.YourFuckingCountryCode+")";
                 let re = new RegExp(showsLS.settings.settingsCountryOkRegex, 'g');
                 if (res.YourFuckingCountryCode.match(re)) {
                     resultsDiv.classList.add("ok");
@@ -1247,6 +1247,9 @@ function hideLinks() {
     for (a of linksList) {
         a.classList.add("hidden");
     }
+    document.getElementById("countryCheck").classList.add("hidden");
+    document.getElementById("countryCheck").classList.remove("ok");
+    document.getElementById("countryCheck").classList.remove("notok");
 }
 
 function showLinks() {
