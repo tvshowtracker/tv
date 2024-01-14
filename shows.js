@@ -1193,12 +1193,10 @@ function buildTable(showsLS, table) {
 }
 
 function getLinks() {
-    if (document.getElementById("wrapper").classList.contains("linksShown")) {
-        document.getElementById("wrapper").classList.remove("linksShown");
+    if (document.getElementById("wrapper").classList.contains("linksShown") && !document.getElementById("countryCheck").classList.contains("notok")) {
         hideLinks();
         return;
     }
-    document.getElementById("wrapper").classList.add("linksShown");
     let showsLS = getShowsObject();
     if (showsLS.settings.settingsCheckLocation) {
         let resultsDiv = document.getElementById("countryCheck");
@@ -1223,7 +1221,7 @@ function getLinks() {
                 } else {
                     resultsDiv.classList.add("notok");
                     icon.innerHTML = "cancel";
-                    hideLinks();
+                    hideLinks(false);
                 }
                 resultsDiv.innerHTML = "";
                 resultsDiv.appendChild(icon);
@@ -1232,6 +1230,9 @@ function getLinks() {
             .catch(function (e) {
                 console.error("ERROR", e);
                 if (confirm("An error occurred checking your location. Show links anyway?")) {
+                    document.getElementById("countryCheck").classList.add("hidden");
+                    document.getElementById("countryCheck").classList.remove("ok");
+                    document.getElementById("countryCheck").classList.remove("notok");
                     showLinks();
                 } else {
                     hideLinks();
@@ -1242,14 +1243,17 @@ function getLinks() {
     }
 }
 
-function hideLinks() {
+function hideLinks(alsoHideBanner=true) {
     let linksList = document.querySelectorAll(".showlist-item .links");
     for (a of linksList) {
         a.classList.add("hidden");
     }
-    document.getElementById("countryCheck").classList.add("hidden");
-    document.getElementById("countryCheck").classList.remove("ok");
-    document.getElementById("countryCheck").classList.remove("notok");
+    document.getElementById("wrapper").classList.remove("linksShown");
+    if (alsoHideBanner) {
+        document.getElementById("countryCheck").classList.add("hidden");
+        document.getElementById("countryCheck").classList.remove("ok");
+        document.getElementById("countryCheck").classList.remove("notok");
+    }
 }
 
 function showLinks() {
@@ -1257,6 +1261,7 @@ function showLinks() {
     for (a of linksList) {
         a.classList.remove("hidden");
     }
+    document.getElementById("wrapper").classList.add("linksShown");
 }
 
 function getDateTitle(dateText) {
