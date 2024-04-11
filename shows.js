@@ -997,7 +997,9 @@ function buildTable(showsLS, table) {
                     t2.appendChild(t2a);
                     let t2_1 = document.createElement("div");
                     t2_1.classList.add("links");
-                    t2_1.classList.add("hidden");
+                    if (!document.getElementById("wrapper").classList.contains("linksShown")) {
+                        t2_1.classList.add("hidden");
+                    }
 
                     let pos = 0;
                     if (showsLS.settings.links) {
