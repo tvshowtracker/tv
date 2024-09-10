@@ -122,9 +122,13 @@ document.addEventListener("mouseover", function (e) {
     }
 });
 document.addEventListener("click", function (e) {
-    //console.log("Target is ", e.target, e.target.closest("a"));
+    console.log("Target is ", e.target, e.target.closest("a"), e.target.classList.contains("showLinksAnyway"));
     if (e.target.id === "searchShow") {
         searchShows();
+    } else if (e.target.classList.contains("showLinksAnyway")) {
+        e.preventDefault();
+        e.stopPropagation();
+        showLinks();
     } else if (e.target.closest("#countryCheck")) {
         document.getElementById("countryCheck").classList.add("hidden");
         document.getElementById("countryCheck").classList.remove("ok");
@@ -439,10 +443,10 @@ function showDetailsPretty(show) {
     right.innerHTML += "<div><span>Status:</span>" + show.status + "</div>";
     right.innerHTML += "<div><span>Started:</span>" + getDate(show.premiered) + "</div>";
     right.innerHTML += "<div><span>Ended:</span>" + (show.ended ? getDate(show.ended) : '') + "</div>";
-    right.innerHTML += "<div><span>Schedule:</span>" + show.schedule.days.join(", ") + "</div>";
+    right.innerHTML += "<div><span>Schedule:</span>" + show.schedule.days.join(", ") + "s</div>";
     let nextEpisode = "<div><span>Next Episode:</span>";
     if (typeof show._embedded !== "undefined" && typeof show._embedded.nextepisode !== "undefined") {
-        nextEpisode += getDate(show._embedded.nextepisode.airstamp) + " " + show._embedded.nextepisode.airtime;
+        nextEpisode += getDate(show._embedded.nextepisode.airstamp, true);
     }
     nextEpisode += "</div>";
     right.innerHTML += nextEpisode;
@@ -1224,6 +1228,7 @@ function getLinks() {
                     resultsDiv.classList.add("notok");
                     icon.innerHTML = "cancel";
                     hideLinks(false);
+                    details.innerHTML += " <a href='javascript:void(0);' class='showLinksAnyway'>Show links anyway</a>";
                 }
                 resultsDiv.innerHTML = "";
                 resultsDiv.appendChild(icon);
@@ -1345,7 +1350,7 @@ function getTimeUntil(date, prefixAfter, prefixBefore, suffixAfter, suffixBefore
     return str;
 
 }
-function getDate(dateText) {
+function getDate(dateText, withTime=false) {
     if (dateText === null) {
         return "Unknown";
     } else {
@@ -1355,13 +1360,22 @@ function getDate(dateText) {
         if (typeof showsLS.settings.settingsDateFormat === "undefined") {
             showsLS.settings.settingsDateFormat = "m/d/Y";
         }
-        return showsLS.settings.settingsDateFormat
+        let returnVal = showsLS.settings.settingsDateFormat
             .replace('Y', d.getFullYear().toString())
             .replace('y', d.getFullYear().toString().substring(2, 4))
             .replace('m', (d.getMonth() + 1).toString())
             .replace('d', d.getDate().toString())
             .replace('M', (d.getMonth() + 1).toString().padStart(2, '0'))
             .replace('D', d.getDate().toString().padStart(2, '0'));
+
+        if (withTime) {
+            let h=d.getHours();
+            let m = d.getMinutes();
+            if (h<10) {h="0"+h;}
+            if (m<10) {m="0"+m;}
+            returnVal += " "+h+":"+m;
+        }
+        return returnVal;
     }
 }
 
