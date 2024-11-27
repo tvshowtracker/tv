@@ -432,7 +432,12 @@ function showDetailsPretty(show) {
     let imgDiv = document.createElement("div");
     imgDiv.classList.add("img");
     let img = document.createElement("img");
-    img.src = show.image.medium;
+    if (typeof show.image !== "undefined" && show.image !== null) {
+        img.src = show.image.medium;
+    }
+    else {
+        img.src = "No_Image_Available.png";
+    }
     imgDiv.appendChild(img);
     top.appendChild(imgDiv);
 
