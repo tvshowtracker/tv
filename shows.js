@@ -67,7 +67,7 @@ function addShow(type) {
 
 function getEmoji(show) {
 
-
+console.log(show);
     if (show.show.status === "Ended") {
         return "<span title='Show is marked as ended'>😭</span>";
     } else if (show.nextEpisode) {
@@ -75,7 +75,12 @@ function getEmoji(show) {
     } else if (show.renewalNote.match(/renewed/i)) {
         return "<span title='Show has been manually noted as renewed'>😅</span>";
     } else if (show.show.status === "Running") {
-        return "<span title='Show is still marked as running'>🧐</span>"
+        if (show.hasNewSeason) {
+            return "<span title='Show has a new season that is not yet scheduled'>😅</span>";
+        }
+        else {
+            return "<span title='Show is still marked as running'>🧐</span>"
+        }
     } else return "<span title='Show status is to be determined'>🤔</span>";
 }
 
