@@ -67,7 +67,6 @@ function addShow(type) {
 
 function getEmoji(show) {
 
-console.log(show);
     if (show.show.status === "Ended") {
         return "<span title='Show is marked as ended'>😭</span>";
     } else if (show.nextEpisode) {
@@ -1141,7 +1140,8 @@ function buildTable(showsLS, table) {
                     t2.appendChild(t2a);
 
                     let t3 = document.createElement("div");
-                    if (typeof showsLS.settings.settingsShowEmojis !== "undefined" && showsLS.settings.settingsShowEmojis) {
+
+                    if (typeof showsLS.settings.settingsShowEmojis === "undefined" || showsLS.settings.settingsShowEmojis) {
                         t3.innerHTML = getEmoji(show);
                         t3.classList.add("smiley");
                     } else {
