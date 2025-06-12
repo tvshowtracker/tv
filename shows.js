@@ -81,7 +81,11 @@ console.log(show);
         else {
             return "<span title='Show is still marked as running'>🧐</span>"
         }
-    } else return "<span title='Show status is to be determined'>🤔</span>";
+    }
+    else if (show.show.status === "In Development") {
+        return "<span title='Show is in development'>😶‍🌫️</span>";
+    }
+    else return "<span title='Show status is to be determined'>🤔</span>";
 }
 
 document.addEventListener("keyup", function (e) {
