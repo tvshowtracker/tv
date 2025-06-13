@@ -130,7 +130,6 @@ document.addEventListener("mouseover", function (e) {
     }
 });
 document.addEventListener("click", function (e) {
-    console.log("Target is ", e.target, e.target.closest("a"), e.target.classList.contains("showLinksAnyway"));
     if (e.target.id === "searchShow") {
         searchShows();
     } else if (e.target.classList.contains("showLinksAnyway")) {
